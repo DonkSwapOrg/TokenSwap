@@ -99,6 +99,9 @@ body {
 .bg1 {
   background-image: url("../assets/images/bg1.png");
   background-size: cover;
+  background-attachment: fixed;
+  background-position: top, left;
+  background-repeat: no-repeat;
 }
 
 [tabindex="-1"]:focus {
@@ -9957,7 +9960,7 @@ a:hover {
 }
 
 .section-highlight {
-  background-color: #20284d;
+  background-color: #7e96ff46;
 }
 
 .section-separated, .testimonials {
