@@ -483,7 +483,7 @@ a {
   left: 8px;
   height: 100%;
   width: 4px;
-  background: $neon-blue;
+  background: $primary;
 }
 
 @media only screen and (min-width: 1170px) {
@@ -561,7 +561,7 @@ a {
 .cd-timeline__date {
   padding: 0 0 0.4em 0;
   text-transform: uppercase;
-  color: $neon-blue;
+  color: $primary;
   font-weight: bold;
   letter-spacing: 1px;
   margin-bottom: 0.7rem;
