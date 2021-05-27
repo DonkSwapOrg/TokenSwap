@@ -12,9 +12,9 @@ $neon-pink: #c75be6;
 $neon-green: #38eeb9;
 $neon-blue: #39baff;
 $highlight-shade: #20284d;
-$primary: $hot-pink;
-$secondary: $blue;
-$theme-colors: ( "primary": $primary, "secondary": $secondary, "info":$hot-pink);
+$primary: $neon-blue;
+$secondary:$dark-blue;
+$theme-colors: ( "primary": $primary, "secondary": $secondary, "info":$neon-blue);
 $enable-gradients: true;
 //global
 $body-bg: $blue;
