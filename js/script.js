@@ -1,15 +1,3 @@
-/*
-
-Script  : Main JS
-Version : 1.0
-Author  : Surjith S M
-URI     : http://themeforest.net/user/surjithctly
-
-Copyright © All rights Reserved
-Surjith S M / @surjithctly
-
-*/
-
 $(function () {
 
     "use strict";
@@ -43,16 +31,17 @@ $(function () {
     ---------------------------------------------------*/
 
     var ctx = $("#distChart");
-    // And for a doughnut chart
+    // And for a pie chart
     var distChart = new Chart(ctx, {
-        type: 'doughnut',
+        type: 'pie',
         data: {
-            labels: ["Team, Marketing and Audits", "Farming and staking rewards"],
+            labels: ["Initial Liquidity (20,000)", "Pre-sale (50,000)"],
             datasets: [{
                 label: "Token Distribution",
-                data: [9, 91],
-                backgroundColor: ["#665fff", "#f89c5a", "#d95af8", "#5aa5f8", "#d7a7ff"],
-                borderWidth: 0
+                data: [28.6, 71.4],
+                backgroundColor: [ "#5aa5f8", "#d7a7ff"],
+                borderWidth: 0,
+                hoverOffset: 4
             }]
         },
         options: {
@@ -61,7 +50,6 @@ $(function () {
             legend: {
                 display: false,
             },
-            cutoutPercentage: 60
         }
     });
     $("#dist_legend").html(distChart.generateLegend());
@@ -71,16 +59,17 @@ $(function () {
     ---------------------------------------------------*/
 
     var cty = $("#alloChart");
-    // And for a doughnut chart
+    // And for a pie chart
     var alloChart = new Chart(cty, {
-        type: 'doughnut',
+        type: 'pie',
         data: {
-            labels: ["Daily dividends", "Team, Marketing and audits", "Legal Expenses", "Admin & Operations", "Overhead Expenses"],
+            labels: ["Initial Liquidity", "Audits"],
             datasets: [{
-                label: "Allocation of Swap fees",
-                data: [75, 25],
-                backgroundColor: ["#51ffd0", "#ffe56a", "#f89c5a", "#ff5fae", "#8e51ff"],
-                borderWidth: 0
+                label: "Allocation of pre-sale funds",
+                data: [40, 60],
+                backgroundColor: ["#51ffd0", "#ffe56a"],
+                borderWidth: 0,
+                hoverOffset: 4
             }]
         },
         options: {
@@ -89,7 +78,6 @@ $(function () {
             legend: {
                 display: false,
             },
-            cutoutPercentage: 60
         }
     });
     $("#allo_legend").html(alloChart.generateLegend());
