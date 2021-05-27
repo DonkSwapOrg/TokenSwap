@@ -93,7 +93,12 @@ body {
   line-height: 1.5;
   color: #b4bdff;
   text-align: left;
-  background-color: #2e3880;
+  background-color: #06288e;
+}
+
+.bg1 {
+  background-image: url("../assets/images/bg1.png");
+  background-size: cover;
 }
 
 [tabindex="-1"]:focus {
