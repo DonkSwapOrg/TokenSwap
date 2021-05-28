@@ -8862,11 +8862,14 @@ a:hover {
 }
 
 .section-highlight {
-  background-color: #7e96ff46;
+  background-color: #007bff38;
+  box-shadow: 0px .1px 8px 3px #007bff;
+  
 }
 
 .section-separated, .testimonials {
-  background-color: #293171;
+  background-color: #007bff38;
+  box-shadow: 0px 1px 8px 5px #007bff;
 }
 .light .section-separated, .light .testimonials {
   background-color: #7e96ff46;
