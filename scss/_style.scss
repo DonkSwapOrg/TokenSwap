@@ -165,7 +165,8 @@ a {
 }
 
 .section-highlight {
-  background-color: $highlight-shade;
+    background-color: #007bff38;
+    box-shadow: 0px .1px 8px 3px #007bff;
 }
 
 .section-separated {
