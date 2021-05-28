@@ -35,11 +35,11 @@ $(function () {
     var distChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ["Initial Liquidity (20,000)", "Pre-sale (50,000)"],
+            labels: ["Initial Liquidity (20,000)", "Public Sale (22,000)", "Private Sale (28,000)"],
             datasets: [{
                 label: "Token Distribution",
-                data: [28.6, 71.4],
-                backgroundColor: [ "#5aa5f8", "#d7a7ff"],
+                data: [28.6, 31.4, 40.0],
+                backgroundColor: [ "#5aa5f8", "#d7a7ff", "#ffffff"],
                 borderWidth: 0,
                 hoverOffset: 4
             }]
@@ -63,7 +63,7 @@ $(function () {
     var alloChart = new Chart(cty, {
         type: 'pie',
         data: {
-            labels: ["Initial Liquidity", "Audits"],
+            labels: ["Liquidity ($20,000)", "More Audits ($30,000)"],
             datasets: [{
                 label: "Allocation of pre-sale funds",
                 data: [40, 60],
