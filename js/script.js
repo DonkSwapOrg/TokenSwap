@@ -142,6 +142,10 @@ $(function () {
     },
   });
   $("#allo_legend").html(alloChart.generateLegend());
+
+  function newLocation(page) {
+    window.location.href = `${page}.html`;
+  }
 });
 
 /*
