@@ -6,12 +6,11 @@ $(function () {
     ---------------------------------------------------*/
 
   var config = {
-    endDate: "2021-06-22 09:00",
+    endDate: "2021-05-30 18:00",
     timeZone: "Europe/Dublin",
     hours: $("#hours"),
     minutes: $("#minutes"),
     seconds: $("#seconds"),
-    newSubMessage: "and should be back online in a few minutes...",
   };
 
   function endEvent($el, newText, hideEl) {
