@@ -5,25 +5,63 @@ $(function () {
       Countdown JS
     ---------------------------------------------------*/
 
-  var $countdownClass = $(".countdown-clock");
+  var config = {
+    endDate: "2021-06-22 09:00",
+    timeZone: "Europe/Dublin",
+    hours: $("#hours"),
+    minutes: $("#minutes"),
+    seconds: $("#seconds"),
+    newSubMessage: "and should be back online in a few minutes...",
+  };
 
-  if ($countdownClass.length > 0) {
-    var datetime = $countdownClass.data("datetime"); //Month Days, Year HH:MM:SS
-    var date = new Date(datetime);
-    var now = new Date();
-    var diff;
-    if (datetime == "" || datetime == null || date < now) {
-      diff = 3600 * 24 * 3.1; // default fallback date
-    } else {
-      diff = date.getTime() / 1000 - now.getTime() / 1000;
-    }
-
-    var clock = $countdownClass.FlipClock(diff, {
-      // ... your options here
-      clockFace: "DailyCounter",
-      countdown: true,
-    });
+  function endEvent($el, newText, hideEl) {
+    $el.text(newText);
+    hideEl.hide();
   }
+
+  function prependZero(number) {
+    return number < 10 ? "0" + number : number;
+  }
+
+  $.extend(true, config || {});
+  var currentTime = moment();
+  var endDate = moment.tz(config.endDate, config.timeZone);
+  var diffTime = endDate.valueOf() - currentTime.valueOf();
+  var duration = moment.duration(diffTime, "milliseconds");
+  var days = duration.days();
+  var interval = 1000;
+  var subMessage = $(".sub-message");
+  var clock = $(".clock");
+
+  if (diffTime < 0) {
+    endEvent(subMessage, config.newSubMessage, clock);
+    return;
+  }
+
+  if (days > 0) {
+    $("#days").text(prependZero(days));
+    $(".days").css("display", "inline-block");
+  }
+
+  var intervalID = setInterval(function () {
+    duration = moment.duration(duration - interval, "milliseconds");
+    var hours = duration.hours(),
+      minutes = duration.minutes(),
+      seconds = duration.seconds();
+    days = duration.days();
+    if (hours <= 0 && minutes <= 0 && seconds <= 0 && days <= 0) {
+      clearInterval(intervalID);
+      endEvent(subMessage, config.newSubMessage, clock);
+      window.location.reload();
+    }
+    if (days === 0) {
+      $(".days").hide();
+    }
+    $("#days").text(prependZero(days));
+    config.hours.text(prependZero(hours));
+    config.minutes.text(prependZero(minutes));
+    config.seconds.text(prependZero(seconds));
+  }, interval);
 
   /*---------------------------------------------------
       Pie Chart 01
