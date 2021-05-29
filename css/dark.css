@@ -8683,18 +8683,23 @@ h3 {
 ---------------------------------------------------*/
 @font-face {
   font-family: "Montserrat";
+  src: url("../assets/fonts/Montserrat-BoldItalic.otf");
+  font-weight: bold;
+  font-style: italic, oblique;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fonts/Montserrat-Italic.otf");
+  font-style: italic, oblique;
+}
+@font-face {
+  font-family: "Montserrat";
   src: url("../assets/fonts/Montserrat-Regular.otf");
 }
 @font-face {
   font-family: "Montserrat";
   src: url("../assets/fonts/Montserrat-Bold.otf");
   font-weight: bold;
-}
-@font-face {
-  font-family: "Montserrat";
-  src: url("../assets/fonts/Montserrat-BoldItalic.otf");
-  font-weight: bold;
-  font-style: italic, oblique;
 }
 body {
   font-family: "Montserrat", "Roboto", sans-serif;
