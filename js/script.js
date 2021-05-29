@@ -145,35 +145,6 @@ $(function () {
   $("#allo_legend").html(alloChart.generateLegend());
 });
 
-/*---------------------------------------------------
-     Owl Carousel
-   ---------------------------------------------------*/
-
-var $testimonalSlider = $(".testimonial-slider");
-
-if ($testimonalSlider.length && $.fn.owlCarousel) {
-  $testimonalSlider.owlCarousel({
-    loop: false,
-    autoplay: false,
-    autoHeight: true,
-    items: 1,
-    navText: [
-      '<img src="images/arrow-left.svg" class="dark"><img src="images/arrow-left-black.svg" class="light">',
-      '<img src="images/arrow-right.svg" class="dark"><img src="images/arrow-right-black.svg" class="light">',
-    ],
-    responsive: {
-      0: {
-        dots: true,
-        nav: false,
-      },
-      768: {
-        dots: false,
-        nav: true,
-      },
-    },
-  });
-}
-
 /*
  * // End $ Strict Function
  * ------------------------ */
