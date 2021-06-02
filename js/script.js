@@ -142,12 +142,17 @@ $(function () {
     },
   });
   $("#allo_legend").html(alloChart.generateLegend());
-
-  function newLocation(page) {
-    window.location.href = `${page}.html`;
-  }
 });
 
+//generate particles
+for (var i = 0; i < 35; i++) {
+  var circle = document.createElement("div");
+  circle.className = "circle";
+  var circleContainer = document.createElement("div");
+  circleContainer.className = "circle-container";
+  circleContainer.appendChild(circle);
+  document.querySelector(".particles").appendChild(circleContainer);
+}
 /*
  * // End $ Strict Function
  * ------------------------ */
