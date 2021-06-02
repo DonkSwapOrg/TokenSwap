@@ -23,7 +23,6 @@ body {
 .circle-container {
   $particleNum: 35;
   $particleColor: hsl(180, 100%, 80%);
-
   position: absolute;
   transform: translateY(-10vh);
   animation-iteration-count: infinite;
@@ -35,41 +34,10 @@ body {
     border-radius: 50%;
     mix-blend-mode: screen;
     background-image: radial-gradient(
-      #1a9cee,
+      #2786c0,
       #3e77d1 10%,
       hsla(180, 100%, 80%, 0) 56%
     );
-
-    animation: fadein-frames 200ms infinite, scale-frames 2s infinite;
-
-    @keyframes fade-frames {
-      0% {
-        opacity: 1;
-      }
-
-      50% {
-        opacity: 0.7;
-      }
-
-      100% {
-        opacity: 1;
-      }
-    }
-
-    @keyframes scale-frames {
-      0% {
-        transform: scale3d(1, 1, 1);
-      }
-
-      $scale: 100;
-      50% {
-        transform: scale3d(2.2, 2.2, 1);
-      }
-
-      100% {
-        transform: scale3d(1, 1, 1);
-      }
-    }
   }
 
   $particleBaseSize: 50;
@@ -82,7 +50,7 @@ body {
 
       $startPositionY: random(400) + 40;
       $framesName: "move-frames-" + $i;
-      $moveDuration: 200000 + random(150000) + ms;
+      $moveDuration: 50000 + random(300000) + ms;
 
       animation-name: #{$framesName};
       animation-duration: $moveDuration;
@@ -107,7 +75,44 @@ body {
       }
 
       .circle {
+        $fadeinName: "fadein-frames-" + $i;
+        $scaleName: "scale-frames-" + $i;
+        $scaleDuration: random(5);
+        $fadeinDuration: $scaleDuration * 1000;
+
+        animation: $fadeinName $fadeinDuration + ms infinite,
+          $scaleName $scaleDuration + s infinite;
         animation-delay: random(4000) + ms;
+
+        @keyframes #{$fadeinName} {
+          0% {
+            opacity: 1;
+          }
+
+          50% {
+            opacity: random(15) / 10;
+          }
+
+          100% {
+            opacity: 1;
+          }
+        }
+
+        $scaleMid: random(25) / 10;
+
+        @keyframes #{$scaleName} {
+          0% {
+            transform: scale3d(1, 1, 1);
+          }
+
+          50% {
+            transform: scale3d($scaleMid, $scaleMid, 1);
+          }
+
+          100% {
+            transform: scale3d(1, 1, 1);
+          }
+        }
       }
     }
   }
