@@ -27,12 +27,35 @@ body {
   font-family: "Montserrat", "Roboto", sans-serif;
 }
 
+.btn {
+  border-radius: 30px;
+  font-size: 28px;
+  box-shadow: 0px 0px 10px 0px #0f8cd4;
+  padding: 10px 20px;
+}
+
+#logo_slogan {
+  height: 440px;
+  width: 520px;
+}
+
 .navbar {
-  padding: 1rem 1.5rem;
+  padding: 2rem 1.5rem;
+}
+
+.nav-link,
+.btn {
+  font-weight: bold;
+}
+
+.nav-link {
+  font-size: 18px;
+  line-height: 1.7;
+  letter-spacing: 0.7px;
 }
 
 .btn-primary {
-  @include gradient-x($primary, $blue, 0%, 100%);
+  @include gradient-x($blue, $primary, 0%, 100%);
   color: $white;
   border: 0;
 }
@@ -91,7 +114,7 @@ a {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center bottom;
-  margin-top: 5rem;
+  margin-top: 7rem;
   margin-bottom: 5rem;
 }
 
