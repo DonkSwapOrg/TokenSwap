@@ -27,12 +27,17 @@ body {
   font-family: "Montserrat", "Roboto", sans-serif;
 }
 
+h4 {
+  font-size: 1.7rem;
+}
+
 .glow-text {
+  font-weight: bold;
   text-shadow: 0 0 10px #0f8cd4;
 }
 
-h4, h3 {
-  font-weight: bold;
+.text-transparent {
+  opacity: 0.6;
 }
 
 .btn {
@@ -175,11 +180,15 @@ a {
 
 .featured-item-icon {
   height: 85px;
+  margin-bottom: 12px;
 }
 
 .featured-item-title {
-  margin-bottom: 1rem;
-  font-weight: 400;
+  width: max-content;
+  margin: 0 auto 1rem;
+  padding: 5px 20px;
+  border-radius: 30px;
+  border: solid 3px $neon-blue;
 }
 
 /*---------------------------------------------------
@@ -187,7 +196,7 @@ a {
 ---------------------------------------------------*/
 
 .section {
-  padding: 2rem 0 8rem;
+  padding: 2rem 0;
 }
 
 .section-title {
@@ -201,23 +210,10 @@ a {
   }
 }
 
-.section-title {
-  &:after {
-    position: absolute;
-    content: "";
-    height: 2px;
-    bottom: 0;
-    background: linear-gradient(to right, #20a3ea00, #20a4ea);
-  }
-  &.max-title:after {
-    width: 250px;
-  }
-  &.mini-title:after {
-    width: 160px;
-  }
-  &.left-aligned:after {
-    left: 0;
-  }
+.section-title > h4 {
+  border-bottom: 3px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to right, #20a3ea00, #20a4ea);
 }
 
 .section-highlight {
