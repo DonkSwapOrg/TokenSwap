@@ -116,7 +116,7 @@
           alt=""
         />
       </div>
-      <div class="hero monserrat">
+      <div class="hero">
         <p class="lead mt-3 mx-auto text-transparent">
           EVER WONDERED WHAT LIES BEYOND THE MOON?
         </p>
@@ -129,7 +129,7 @@
         <h4 class="glow-text">Meet ShibaNova</h4>
       </div>
       <div class="container">
-        <div class="row monserrat">
+        <div class="row">
           <div class="col-12 col-md-4">
             <div class="feature-item">
               <img
@@ -189,6 +189,7 @@
         </div>
         <div class="container tokens d-flex mt-5">
           <div class="token token d-flex mt-5 justify-content-end">
+            <div style="font-size: 18px" class="glow-text">Native-token</div>
             <div>
               <img
                 src="assets/images/nova_token.png"
@@ -199,6 +200,9 @@
             </div>
           </div>
           <div class="token d-flex mt-5 justify-content-end flex-row-reverse">
+            <div style="font-size: 18px" class="glow-text gold">
+              LP Farming Reward Token
+            </div>
             <div>
               <img
                 src="assets/images/snova_token.png"
@@ -229,38 +233,38 @@
           <div class="clock">
             <div class="column days">
               <div class="timer" id="days"></div>
-              <div class="text">DAYS</div>
+              <div class="text-transparent">DAYS</div>
             </div>
             <div class="timer days">:</div>
             <div class="column">
               <div class="timer" id="hours"></div>
-              <div class="text">HOURS</div>
+              <div class="text-transparent">HOURS</div>
             </div>
             <div class="timer">:</div>
             <div class="column">
               <div class="timer" id="minutes"></div>
-              <div class="text">MINUTES</div>
+              <div class="text-transparent">MINUTES</div>
             </div>
             <div class="timer">:</div>
             <div class="column">
               <div class="timer" id="seconds"></div>
-              <div class="text">SECONDS</div>
+              <div class="text-transparent">SECONDS</div>
             </div>
           </div>
         </div>
 
         <div style="margin-top: 75px" class="row text-center">
           <div class="col">
-            <h6 class="text-info">Pre-Sale</h6>
-            <h3 class="display-5 mb-5">50,000</h3>
+            <h4 class="featured-item-title glow-text">Pre-Sale</h6>
+            <h3 class="display-5 mb-5 glow-text">50,000</h3>
           </div>
           <div class="col">
-            <h6 class="text-info">Price</h6>
-            <h3 class="display-5 mb-5">1.00$</h3>
+            <h4 class="featured-item-title glow-text">Price</h6>
+            <h3 class="display-5 mb-5 glow-text">1.00$</h3>
           </div>
           <div class="col">
-            <h6 class="text-info">Hardcap</h6>
-            <h3 class="display-5 mb-5">50,000$</h3>
+            <h4 class="featured-item-title glow-text">Hardcap</h6>
+            <h3 class="display-5 mb-5 glow-text">50,000$</h3>
           </div>
         </div>
         <!-- // row -->
@@ -268,30 +272,30 @@
         <div class="row">
           <div class="col-12 col-md-6">
             <div class="section-title mini-title left-aligned">
-              <h4 class="glow-text">Pre-minted tokens distribution (70,000)</h4>
+              <h4>Pre-minted tokens distribution (70,000)</h4>
             </div>
             <div
-              class="d-flex flex-column flex-lg-row justify-content-between align-items-center my-5 mb-md-0"
+              class="d-flex flex-column justify-content-between align-items-center my-5 mb-md-0"
             >
               <div class="flex-fill flex-shrink-1 w-50">
                 <canvas id="dist-chart"></canvas>
               </div>
-              <div id="dist-legend"></div>
+              <div id="dist-legend" class="legend mt-4"></div>
             </div>
           </div>
 
           <div class="col-12 col-md-6">
             <div class="section-title mini-title left-aligned">
-              <h4 class="glow-text">Allocation of Funds</h4>
+              <h4>Allocation of Funds</h4>
             </div>
 
             <div
-              class="d-flex flex-column flex-lg-row justify-content-between align-items-center my-5 mb-md-0"
+              class="d-flex flex-column justify-content-between align-items-center my-5 mb-md-0"
             >
               <div class="flex-fill flex-shrink-1 w-50">
                 <canvas id="allo-chart"></canvas>
               </div>
-              <div id="allo-legend"></div>
+              <div id="allo-legend" class="legend mt-4"></div>
             </div>
           </div>
         </div>

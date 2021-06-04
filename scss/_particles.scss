@@ -40,7 +40,7 @@ body {
     );
   }
 
-  $particleBaseSize: 50;
+  $particleBaseSize: 80;
 
   @for $i from 1 through $particleNum {
     &:nth-child(#{$i}) {

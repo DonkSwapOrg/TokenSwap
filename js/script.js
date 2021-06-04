@@ -169,22 +169,19 @@ var ctx = document.getElementById("dist-chart");
 var myChart = new Chart(ctx, {
   type: "pie",
   data: {
-    labels: [
-      "Initial Liquidity (20,000)",
-      "Public Sale (22,000)",
-      "Private Sale (28,000)",
-    ],
+    labels: ["Pre-Sale (50,000 NOVA)", "Initial Liquidity (20,000 NOVA)"],
     datasets: [
       {
         label: "Token Distribution",
-        data: [28.6, 31.4, 40.0],
-        backgroundColor: ["#5aa5f8", "#d7a7ff", "#ffffff"],
+        data: [71.4, 28.6],
+        backgroundColor: ["#159bd2", "#8cd0e5"],
         borderWidth: 0,
         hoverOffset: 4,
       },
     ],
   },
   options: {
+    responsive: true,
     plugins: {
       htmlLegend: {
         containerID: "dist-legend",
@@ -205,18 +202,19 @@ var ctx = document.getElementById("allo-chart");
 var myChart = new Chart(ctx, {
   type: "pie",
   data: {
-    labels: ["Liquidity ($20,000)", "More Audits ($30,000)"],
+    labels: ["Audits ($30,000)", "Liquidity ($20,000)"],
     datasets: [
       {
         label: "Allocation of pre-sale funds",
-        data: [40, 60],
-        backgroundColor: ["#51ffd0", "#ffe56a"],
+        data: [60, 40],
+        backgroundColor: ["#9430b5", "#ba5ae2"],
         borderWidth: 0,
         hoverOffset: 4,
       },
     ],
   },
   options: {
+    responsive: true,
     plugins: {
       htmlLegend: {
         containerID: "allo-legend",

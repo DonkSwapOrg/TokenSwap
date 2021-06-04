@@ -32,8 +32,9 @@ body {
   font-family: "Montserrat", "Roboto", sans-serif;
 }
 
-h4 {
-  font-size: 1.7rem;
+.legend {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .big-noodle-titling {
@@ -108,9 +109,7 @@ h4 {
 }
 
 .display-5 {
-  font-size: 2.4rem;
-  font-weight: 300;
-  line-height: 1.2;
+  font-size: 3.4rem;
 }
 
 .text-info {
@@ -202,20 +201,25 @@ a {
 }
 
 .feature-item > p {
+  margin-top: 1rem;
   font-size: 20px;
 }
 
 .featured-item-icon {
   height: 85px;
-  margin-bottom: 12px;
+  margin: 12px 0;
 }
 
 .featured-item-title {
   width: max-content;
-  margin: 0 auto 1rem;
+  margin: 0 auto;
   padding: 5px 20px;
   border-radius: 30px;
-  border: solid 3px $neon-blue;
+  border: solid $neon-blue;
+  max-width: 100%;
+  border-left-width: 0px;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
 }
 
 /*---------------------------------------------------
@@ -243,6 +247,7 @@ a {
   border-image-source: linear-gradient(to right, #20a3ea00, #20a4ea);
   min-width: 200px;
   text-align: center;
+  font-size: 2rem;
 }
 
 .section-highlight {
