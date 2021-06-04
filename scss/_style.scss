@@ -59,6 +59,23 @@ h5 {
 .token {
   width: 100%;
   padding: 0 3rem;
+
+  @media (min-width: 360px) and (max-width: 768px) {
+    display: block !important;
+    text-align: center;
+  }
+
+  .glow-text {
+    @media (min-width: 360px) and (max-width: 768px) {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.tokens {
+  @media (min-width: 360px) and (max-width: 768px) {
+    flex-wrap: wrap;
+  }
 }
 
 .token-img {
@@ -79,6 +96,10 @@ h5 {
 #logo_slogan {
   height: 400px;
   width: auto;
+
+  @media (min-width: 360px) and (max-width: 768px) {
+    height: 260px;
+  }
 }
 
 .navbar {
@@ -156,6 +177,10 @@ a {
   background-position: center bottom;
   margin-top: 6rem;
   margin-bottom: 5rem;
+
+  @media (min-width: 360px) and (max-width: 768px) {
+    margin-top: 0;
+  }
 }
 
 .graph {
