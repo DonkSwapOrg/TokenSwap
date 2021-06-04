@@ -32,22 +32,27 @@ body {
   font-family: "Montserrat", "Roboto", sans-serif;
 }
 
+h5 {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
 .legend {
-  font-size: 20px;
   font-weight: bold;
 }
 
 .big-noodle-titling {
   font-family: "Big Noodle Titling";
   font-size: 4rem;
+  letter-spacing: 2px;
 }
 
 .glow-text {
   font-weight: bold;
-  text-shadow: 0 0 10px #0f8cd4;
+  text-shadow: 0 0 6px $neon-blue, 0 0 4px $neon-blue;
 
   &.gold {
-    text-shadow: 0 0 10px #ffc53d;
+    text-shadow: 0 0 6px $gold, 0 0 4px $gold;
   }
 }
 
@@ -72,8 +77,8 @@ body {
 }
 
 #logo_slogan {
-  height: 440px;
-  width: 520px;
+  height: 400px;
+  width: auto;
 }
 
 .navbar {
@@ -86,7 +91,7 @@ body {
 }
 
 .nav-link {
-  font-size: 18px;
+  font-size: 1rem;
   line-height: 1.7;
   letter-spacing: 0.7px;
 }
@@ -149,7 +154,7 @@ a {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center bottom;
-  margin-top: 7rem;
+  margin-top: 6rem;
   margin-bottom: 5rem;
 }
 
@@ -169,8 +174,6 @@ a {
 
 .hero {
   text-align: center;
-  margin-left: 1rem;
-  margin-right: 1rem;
   .lead {
     max-width: 550px;
   }
@@ -202,7 +205,6 @@ a {
 
 .feature-item > p {
   margin-top: 1rem;
-  font-size: 20px;
 }
 
 .featured-item-icon {
@@ -227,7 +229,7 @@ a {
 ---------------------------------------------------*/
 
 .section {
-  padding: 2rem 0;
+  padding: 2rem 0 6rem;
 }
 
 .section-title {
@@ -247,12 +249,10 @@ a {
   border-image-source: linear-gradient(to right, #20a3ea00, #20a4ea);
   min-width: 200px;
   text-align: center;
-  font-size: 2rem;
 }
 
 .section-highlight {
   background-color: #007bff38;
-  box-shadow: 0px 0.1px 8px 3px #007bff;
 }
 
 .section-separated {

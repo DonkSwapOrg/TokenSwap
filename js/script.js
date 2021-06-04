@@ -161,6 +161,16 @@ const htmlLegendPlugin = {
 };
 // </block:plugin>
 
+const toolTipFormatter = function (context) {
+  var label = context.dataset.label || "";
+
+  if (label) {
+    label += ": ";
+  }
+  if (context.parsed.y !== null) label += context.parsed + "%";
+  return label;
+};
+
 /*---------------------------------------------------
       Pie Chart 01
     ---------------------------------------------------*/
@@ -188,6 +198,11 @@ var myChart = new Chart(ctx, {
       },
       legend: {
         display: false,
+      },
+      tooltip: {
+        callbacks: {
+          label: toolTipFormatter,
+        },
       },
     },
   },
@@ -221,6 +236,11 @@ var myChart = new Chart(ctx, {
       },
       legend: {
         display: false,
+      },
+      tooltip: {
+        callbacks: {
+          label: toolTipFormatter,
+        },
       },
     },
   },
