@@ -23,16 +23,102 @@
   font-weight: bold;
 }
 
+@font-face {
+  font-family: "Big Noodle Titling";
+  src: url("../assets/fonts/big_noodle_titling.ttf");
+}
+
 body {
   font-family: "Montserrat", "Roboto", sans-serif;
 }
 
+h5 {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.legend {
+  font-weight: bold;
+}
+
+.big-noodle-titling {
+  font-family: "Big Noodle Titling";
+  font-size: 4rem;
+  letter-spacing: 2px;
+}
+
+.glow-text {
+  font-weight: bold;
+  text-shadow: 0 0 6px $neon-blue, 0 0 4px $neon-blue;
+
+  &.gold {
+    text-shadow: 0 0 6px $gold, 0 0 4px $gold;
+  }
+}
+
+.token {
+  width: 100%;
+  padding: 0 3rem;
+
+  @media (min-width: 360px) and (max-width: 768px) {
+    display: block !important;
+    text-align: center;
+  }
+
+  .glow-text {
+    @media (min-width: 360px) and (max-width: 768px) {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.tokens {
+  @media (min-width: 360px) and (max-width: 768px) {
+    flex-wrap: wrap;
+  }
+}
+
+.token-img {
+  height: 150px;
+}
+
+.text-transparent {
+  opacity: 0.6;
+}
+
+.btn {
+  border-radius: 30px;
+  font-size: 25px;
+  box-shadow: 0px 0px 10px 0px #0f8cd4;
+  padding: 10px 20px;
+}
+
+#logo_slogan {
+  height: 400px;
+  width: auto;
+
+  @media (min-width: 360px) and (max-width: 768px) {
+    height: 260px;
+  }
+}
+
 .navbar {
-  padding: 1rem 1.5rem;
+  padding: 2rem 1.5rem;
+}
+
+.nav-link,
+.btn {
+  font-weight: bold;
+}
+
+.nav-link {
+  font-size: 1rem;
+  line-height: 1.7;
+  letter-spacing: 0.7px;
 }
 
 .btn-primary {
-  @include gradient-x($primary, $blue, 0%, 100%);
+  @include gradient-x($blue, $primary, 0%, 100%);
   color: $white;
   border: 0;
 }
@@ -49,9 +135,7 @@ body {
 }
 
 .display-5 {
-  font-size: 2.4rem;
-  font-weight: 300;
-  line-height: 1.2;
+  font-size: 3.4rem;
 }
 
 .text-info {
@@ -91,8 +175,12 @@ a {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center bottom;
-  margin-top: 5rem;
+  margin-top: 6rem;
   margin-bottom: 5rem;
+
+  @media (min-width: 360px) and (max-width: 768px) {
+    margin-top: 0;
+  }
 }
 
 .graph {
@@ -111,8 +199,6 @@ a {
 
 .hero {
   text-align: center;
-  margin-left: 1rem;
-  margin-right: 1rem;
   .lead {
     max-width: 550px;
   }
@@ -142,13 +228,25 @@ a {
   margin: 1rem auto;
 }
 
+.feature-item > p {
+  margin-top: 1rem;
+}
+
 .featured-item-icon {
-  margin: 1.2rem 0;
+  height: 85px;
+  margin: 12px 0;
 }
 
 .featured-item-title {
-  margin-bottom: 1rem;
-  font-weight: 400;
+  width: max-content;
+  margin: 0 auto;
+  padding: 5px 20px;
+  border-radius: 30px;
+  border: solid $neon-blue;
+  max-width: 100%;
+  border-left-width: 0px;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
 }
 
 /*---------------------------------------------------
@@ -156,11 +254,11 @@ a {
 ---------------------------------------------------*/
 
 .section {
-  padding: 2rem 0 8rem;
+  padding: 2rem 0 6rem;
 }
 
 .section-title {
-  margin: 3.5rem auto 2rem;
+  margin: 2rem auto;
   position: relative;
   display: flex;
   flex-direction: row;
@@ -170,28 +268,16 @@ a {
   }
 }
 
-.section-title {
-  &:after {
-    position: absolute;
-    content: "";
-    height: 2px;
-    bottom: 0;
-    background: linear-gradient(to right, #3877ec, #dedee9);
-  }
-  &.max-title:after {
-    width: 250px;
-  }
-  &.mini-title:after {
-    width: 125px;
-  }
-  &.left-aligned:after {
-    left: 0;
-  }
+.section-title > h4 {
+  border-bottom: 3px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to right, #20a3ea00, #20a4ea);
+  min-width: 200px;
+  text-align: center;
 }
 
 .section-highlight {
   background-color: #007bff38;
-  box-shadow: 0px 0.1px 8px 3px #007bff;
 }
 
 .section-separated {
@@ -236,42 +322,6 @@ a {
       $neon-green
     );
   }
-}
-
-/*---------------------------------------------------
-  Donut Chart
----------------------------------------------------*/
-
-.donut-chart {
-  width: 100%;
-}
-
-.donut-legend ul {
-  margin: 0 0 0 1.3rem;
-  padding: 20px 0;
-  @media (max-width: 767px) {
-    padding: 20px 0 40px;
-    margin: 0;
-  }
-}
-
-.donut-legend li {
-  list-style: none;
-  white-space: nowrap;
-}
-
-.donut-legend li span {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  border-radius: 100%;
-  margin-right: 16px;
-  margin-bottom: -2px;
-}
-
-.donut-legend li {
-  margin-bottom: 10px;
-  margin-right: 10px;
 }
 
 /*---------------------------------------------------

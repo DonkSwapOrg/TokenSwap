@@ -31,13 +31,9 @@
     />
     <!-- Template CSS -->
     <link rel="stylesheet" href="css/dark.css" />
-    <link rel="stylesheet" href="css/stars.css" />
   </head>
 
   <body class="dark">
-    <div id="stars"></div>
-    <div id="stars2"></div>
-    <div id="stars3"></div>
     <nav class="navbar navbar-expand-lg navbar-dark">
       <button
         class="navbar-toggler"
@@ -54,18 +50,18 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul style="margin: auto" class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#token-sale">Pre-Sale</a>
+            <a class="nav-link" href="#tokens">PRE-SALE</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#roadmap">Roadmap</a>
+            <a class="nav-link" href="#roadmap">ROADMAP</a>
           </li>
           <li class="nav-item">
             <a
               id="navbarDropdown"
               target="_blank"
-              href="shibanova.medium.com/"
+              href="https://shibanova.medium.com/"
               class="nav-link"
-              >Docs</a
+              >DOCS</a
             >
           </li>
           <li class="nav-item dropdown">
@@ -75,7 +71,7 @@
               href="#"
               role="button"
               data-toggle="dropdown"
-              >Socials</a
+              >SOCIALS</a
             >
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a
@@ -113,50 +109,52 @@
     >
       <div>
         <img
-          src="assets/images/Shibanove_homepage_logov2.png"
+          id="logo_slogan"
+          src="assets/images/logo.png"
           width="550"
           height="250"
           alt=""
         />
       </div>
-      <div class="hero monserrat">
-        <h1>The <span class="highlight">Daily Dividends</span> AMM</h1>
-        <p class="lead mt-3 mx-auto">
+      <div class="hero">
+        <p class="lead mt-3 mx-auto text-transparent">
           EVER WONDERED WHAT LIES BEYOND THE MOON?
         </p>
-        <a href="#" class="btn btn-primary mt-3"> Coming soon... </a>
+        <a href="#" class="btn btn-primary mt-3"> Coming Soon</a>
       </div>
     </div>
 
     <div id="meet-us" class="section feature-highlight">
       <div class="section-title mini-title">
-        <h4><a id="explore"></a>Meet ShibaNova</h4>
+        <h4 class="glow-text">Meet ShibaNova</h4>
       </div>
       <div class="container">
-        <div class="row monserrat">
+        <div class="row">
           <div class="col-12 col-md-4">
             <div class="feature-item">
               <img
-                src="assets/images/feature-one.svg"
+                src="assets/images/feature-one.png"
                 alt="icon"
                 class="featured-item-icon"
               />
-              <h4 class="featured-item-title">Degen Mode</h4>
-              <p>
-                This is not your typical Goose fork. Degens, feel free to ape
-                in! (*Degen advice, not financial advice!)
+              <h5 class="featured-item-title glow-text">Degen Mode</h5>
+              <p class="text-transparent">
+                Degens, feel free to ape in! (*Degen advice, not financial
+                advice!)
               </p>
             </div>
           </div>
           <div class="col-12 col-md-4">
             <div class="feature-item">
               <img
-                src="assets/images/feature-two.svg"
+                src="assets/images/feature-two.png"
                 alt="icon"
                 class="featured-item-icon"
               />
-              <h4 class="featured-item-title">Audits, Audits, Audits</h4>
-              <p>
+              <h5 class="glow-text featured-item-title">
+                Audits, Audits, Audits
+              </h5>
+              <p class="text-transparent">
                 We take security very seriously! We will allocate a significant
                 portion of our funds on audits with the most prominent DeFi
                 auditors before, during, and after we launch!
@@ -166,12 +164,12 @@
           <div class="col-12 col-md-4">
             <div class="feature-item">
               <img
-                src="assets/images/feature-three.svg"
+                src="assets/images/feature-three.png"
                 alt="icon"
                 class="featured-item-icon"
               />
-              <h4 class="featured-item-title">Shareholders</h4>
-              <p>
+              <h5 class="featured-item-title glow-text">Shareholders</h5>
+              <p class="text-transparent">
                 75% of all swap fees collected on our dApp goes back as
                 dividends to all holders of our sNOVA tokens. Our Money Pot
                 distributes dividends to our shareholders daily!
@@ -184,19 +182,50 @@
     </div>
     <!-- // section -->
 
-    <section id="token-sale" class="section section-highlight">
+    <section id="tokens" class="section">
       <div class="container">
-        <div class="section-title max-title">
-          <h3>Pre-Sale</h3>
+        <div class="section-title mini-title">
+          <h4 class="glow-text">Tokens</h4>
         </div>
-        <div class="container">
-          <div class="clear-loading spinner">
-            <span></span>
+        <div class="container tokens d-flex mt-5">
+          <div class="token token d-flex mt-5 justify-content-end">
+            <div style="font-size: 18px" class="glow-text">Native-token</div>
+            <div>
+              <img
+                src="assets/images/nova_token.png"
+                alt="nova token"
+                class="token-img"
+              />
+              <p class="text-center big-noodle-titling glow-text">NOVA</p>
+            </div>
           </div>
+          <div class="token d-flex mt-5 justify-content-end flex-row-reverse">
+            <div style="font-size: 18px" class="glow-text gold">
+              LP Farming Reward Token
+            </div>
+            <div>
+              <img
+                src="assets/images/snova_token.png"
+                alt="snova token"
+                class="token-img"
+              />
+              <p class="text-center big-noodle-titling glow-text gold">
+                <span style="font-size: smaller">s</span>NOVA
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="token-sale" class="section">
+      <div class="container">
+        <div class="section-title mini-title">
+          <h4 class="glow-text">Pre-Sale</h4>
         </div>
         <p
           style="font-size: 1.5rem"
-          class="lead p-3 centered-text text-center mx-auto"
+          class="lead centered-text text-center mx-auto"
         >
           Starts in:
         </p>
@@ -204,38 +233,38 @@
           <div class="clock">
             <div class="column days">
               <div class="timer" id="days"></div>
-              <div class="text">DAYS</div>
+              <div class="text-transparent">DAYS</div>
             </div>
             <div class="timer days">:</div>
             <div class="column">
               <div class="timer" id="hours"></div>
-              <div class="text">HOURS</div>
+              <div class="text-transparent">HOURS</div>
             </div>
             <div class="timer">:</div>
             <div class="column">
               <div class="timer" id="minutes"></div>
-              <div class="text">MINUTES</div>
+              <div class="text-transparent">MINUTES</div>
             </div>
             <div class="timer">:</div>
             <div class="column">
               <div class="timer" id="seconds"></div>
-              <div class="text">SECONDS</div>
+              <div class="text-transparent">SECONDS</div>
             </div>
           </div>
         </div>
 
         <div style="margin-top: 75px" class="row text-center">
           <div class="col">
-            <h6 class="text-info">Pre-Sale</h6>
-            <h3 class="display-5 mb-5">50,000</h3>
+            <h5 class="featured-item-title glow-text">Pre-Sale</h5>
+            <h3 class="display-5 mb-5 glow-text">50,000</h3>
           </div>
           <div class="col">
-            <h6 class="text-info">Price</h6>
-            <h3 class="display-5 mb-5">1.00$</h3>
+            <h5 class="featured-item-title glow-text">Price</h5>
+            <h3 class="display-5 mb-5 glow-text">1.00$</h3>
           </div>
           <div class="col">
-            <h6 class="text-info">Hardcap</h6>
-            <h3 class="display-5 mb-5">50,000$</h3>
+            <h5 class="featured-item-title glow-text">Hardcap</h5>
+            <h3 class="display-5 mb-5 glow-text">50,000$</h3>
           </div>
         </div>
         <!-- // row -->
@@ -243,36 +272,30 @@
         <div class="row">
           <div class="col-12 col-md-6">
             <div class="section-title mini-title left-aligned">
-              <h4>Pre-minted tokens distribution (70,000)</h4>
+              <h5>Pre-minted tokens distribution (70,000)</h5>
             </div>
             <div
-              class="d-flex flex-column flex-lg-row justify-content-between align-items-center my-5 mb-md-0"
+              class="d-flex flex-column justify-content-between align-items-center my-5 mb-md-0"
             >
               <div class="flex-fill flex-shrink-1 w-50">
-                <canvas id="distChart" class="donut-chart"></canvas>
+                <canvas id="dist-chart"></canvas>
               </div>
-              <div
-                id="dist_legend"
-                class="flex-fill w-50 flex-grow-1 donut-legend"
-              ></div>
+              <div id="dist-legend" class="legend mt-4"></div>
             </div>
           </div>
 
           <div class="col-12 col-md-6">
             <div class="section-title mini-title left-aligned">
-              <h4>Allocation of Funds</h4>
+              <h5>Allocation of Funds</h5>
             </div>
 
             <div
-              class="d-flex flex-column flex-lg-row justify-content-between align-items-center my-5 mb-md-0"
+              class="d-flex flex-column justify-content-between align-items-center my-5 mb-md-0"
             >
               <div class="flex-fill flex-shrink-1 w-50">
-                <canvas id="alloChart" class="donut-chart"></canvas>
+                <canvas id="allo-chart"></canvas>
               </div>
-              <div
-                id="allo_legend"
-                class="flex-fill w-50 flex-grow-1 donut-legend"
-              ></div>
+              <div id="allo-legend" class="legend mt-4"></div>
             </div>
           </div>
         </div>
@@ -289,8 +312,8 @@
     <!-- // section -->
     <section id="roadmap" class="section">
       <div class="container">
-        <div class="section-title max-title">
-          <h3>Project Roadmap</h3>
+        <div class="section-title mini-title">
+          <h4 class="glow-text">Roadmap</h4>
         </div>
 
         <section class="cd-timeline js-cd-timeline">
@@ -298,14 +321,20 @@
             <div class="cd-timeline__block js-cd-block">
               <div class="cd-timeline__milestone"></div>
               <div class="cd-timeline__content js-cd-content">
-                <div class="cd-timeline__date">May 2021</div>
-                <h4>Medium article</h4>
+                <div class="cd-timeline__date glow-text">May 2021</div>
+                <h4 class="glow-text">Medium article</h4>
                 <p>
                   <a target="_blank" href="https://shibanova.medium.com/"
                     >Laying down our mission and vision.</a
                   >
                 </p>
-                <h4>Pre-sale</h4>
+              </div>
+            </div>
+            <div class="cd-timeline__block js-cd-block">
+              <div class="cd-timeline__milestone"></div>
+              <div class="cd-timeline__content js-cd-content">
+                <div class="cd-timeline__date glow-text">May 2021</div>
+                <h4 class="glow-text">Pre-sale</h4>
                 <p>
                   Pre-sale of the NOVA token to raise funds for initial
                   liquidity and audits.
@@ -315,8 +344,8 @@
             <div class="cd-timeline__block js-cd-block">
               <div class="cd-timeline__milestone"></div>
               <div class="cd-timeline__content js-cd-content">
-                <div class="cd-timeline__date">JUNE 2021</div>
-                <h4>Smart contracts audits</h4>
+                <div class="cd-timeline__date glow-text">JUNE 2021</div>
+                <h4 class="glow-text">Smart contracts audits</h4>
                 <p>
                   Audits of the Shibanova.io smart contracts by reputable third
                   parties.
@@ -326,8 +355,8 @@
             <div class="cd-timeline__block js-cd-block">
               <div class="cd-timeline__milestone"></div>
               <div class="cd-timeline__content js-cd-content">
-                <div class="cd-timeline__date">June 2021</div>
-                <h4>We are live!&nbsp;</h4>
+                <div class="cd-timeline__date glow-text">June 2021</div>
+                <h4 class="glow-text">We are live!&nbsp;</h4>
                 <p>Launch of ShibaNova dApp</p>
               </div>
             </div>
@@ -426,18 +455,19 @@
         </div>
       </div>
     </footer>
+    <div class="particles"></div>
+
     <!-- JavaScript -->
     <!-- jQuery & Bootstrap -->
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <!-- Plugin JS -->
-    <script src="js/plugins/flipclock.min.js"></script>
-    <script src="js/plugins/chart.min.js"></script>
     <script type="text/javascript" src="js/moment.min.js"></script>
     <script
       type="text/javascript"
       src="js/moment-timezone-with-data.js"
     ></script>
+    <script src="js/plugins/chart.min.js"></script>
     <!-- Custom JS -->
     <script src="js/script.js"></script>
   </body>
