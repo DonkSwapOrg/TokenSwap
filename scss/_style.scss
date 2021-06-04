@@ -28,8 +28,13 @@
   src: url("../assets/fonts/big_noodle_titling.ttf");
 }
 
+* {
+  scroll-behavior: smooth !important;
+}
+
 body {
   font-family: "Montserrat", "Roboto", sans-serif;
+  font-size: 1rem;
 }
 
 h5 {
@@ -78,6 +83,10 @@ h5 {
   }
 }
 
+#tokens {
+  padding-bottom: 0;
+}
+
 .token-img {
   height: 150px;
 }
@@ -88,7 +97,7 @@ h5 {
 
 .btn {
   border-radius: 30px;
-  font-size: 25px;
+  font-size: 20px;
   box-shadow: 0px 0px 10px 0px #0f8cd4;
   padding: 10px 20px;
 }
