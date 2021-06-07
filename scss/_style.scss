@@ -92,7 +92,7 @@ h5 {
 }
 
 .text-transparent {
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 .btn {
@@ -215,6 +215,10 @@ a {
   .lead {
     max-width: 550px;
   }
+  p {
+    font-size: 20px;
+    width: 80%;
+  }
 }
 
 .centered-text {
@@ -229,6 +233,15 @@ a {
 @media (max-width: 992px) {
   .navbar-collapse {
     padding-top: 1rem;
+  }
+  .navbar-nav:first-child {
+    display: none;
+  }
+}
+
+@media (min-width: 993px) {
+  .dropdown {
+    display: none;
   }
 }
 
