@@ -612,6 +612,9 @@ a {
   .light & {
     background: $white;
   }
+  &.done {
+    background-color: $primary;
+  }
 }
 
 @media only screen and (min-width: 1170px) {
