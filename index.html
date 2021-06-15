@@ -116,7 +116,10 @@
         </ul>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#tokens">AUDITS</a>
+            <a class="nav-link" href="#">AUDITS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#tokens">TOKENOMICS</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#roadmap">ROADMAP</a>
@@ -130,7 +133,7 @@
               >DOCS</a
             >
           </li>
-          
+
           <li class="nav-item dropdown">
             <a
               id="navbarDropdown"
@@ -206,7 +209,7 @@
                 class="featured-item-icon"
               />
               <h5 class="featured-item-title glow-text">Degen Mode</h5>
-              <p class="text-transparent">
+              <p>
                 Degens, feel free to ape in! (*Degen advice, not financial
                 advice!)
               </p>
@@ -222,7 +225,7 @@
               <h5 class="glow-text featured-item-title">
                 Audits, Audits, Audits
               </h5>
-              <p class="text-transparent">
+              <p>
                 We take security very seriously! We will allocate a significant
                 portion of our funds on audits with the most prominent DeFi
                 auditors before, during, and after we launch!
@@ -237,7 +240,7 @@
                 class="featured-item-icon"
               />
               <h5 class="featured-item-title glow-text">Shareholders</h5>
-              <p class="text-transparent">
+              <p>
                 75% of all swap fees collected on our dApp goes back as
                 dividends to all holders of our sNOVA tokens. Our Money Pot
                 distributes dividends to our shareholders daily!
@@ -283,100 +286,20 @@
             </div>
           </div>
         </div>
+        <div
+          style="
+            border-top: 2px solid;
+            border-bottom: 2px solid;
+            border-image-slice: 1;
+            border-image-source: linear-gradient(to right, #20a3ea00, #20a4ea);
+            height: 300px;
+            width: 100%;
+          "
+          class="container"
+        ></div>
       </div>
     </section>
 
-    <section id="token-sale" class="section">
-      <div class="container">
-        <div class="section-title mini-title">
-          <h4 class="glow-text">Public Pre-Sale</h4>
-        </div>
-        <p
-          style="font-size: 1.5rem"
-          class="lead centered-text text-center mx-auto"
-        >
-          Starts in:
-        </p>
-        <div class="text-center">
-          <div class="clock">
-            <div class="column days">
-              <div class="timer" id="days"></div>
-              <div class="text-transparent">DAYS</div>
-            </div>
-            <div class="timer days">:</div>
-            <div class="column">
-              <div class="timer" id="hours"></div>
-              <div class="text-transparent">HOURS</div>
-            </div>
-            <div class="timer">:</div>
-            <div class="column">
-              <div class="timer" id="minutes"></div>
-              <div class="text-transparent">MINUTES</div>
-            </div>
-            <div class="timer">:</div>
-            <div class="column">
-              <div class="timer" id="seconds"></div>
-              <div class="text-transparent">SECONDS</div>
-            </div>
-          </div>
-        </div>
-
-        <div style="margin-top: 75px" class="row text-center">
-          <div class="col">
-            <h5 class="featured-item-title glow-text">Pre-Sale</h5>
-            <h3 class="display-5 mb-5 glow-text">50,000</h3>
-          </div>
-          <div class="col">
-            <h5 class="featured-item-title glow-text">Price</h5>
-            <h3 class="display-5 mb-5 glow-text">1.00$</h3>
-          </div>
-          <div class="col">
-            <h5 class="featured-item-title glow-text">Hardcap</h5>
-            <h3 class="display-5 mb-5 glow-text">50,000$</h3>
-          </div>
-        </div>
-        <!-- // row -->
-
-        <div class="row">
-          <div class="col-12 col-md-6">
-            <div class="section-title mini-title left-aligned">
-              <h5>Pre-minted tokens distribution (70,000)</h5>
-            </div>
-            <div
-              class="d-flex flex-column justify-content-between align-items-center my-5 mb-md-0"
-            >
-              <div class="flex-fill flex-shrink-1 w-50">
-                <canvas id="dist-chart"></canvas>
-              </div>
-              <div id="dist-legend" class="legend mt-4"></div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6">
-            <div class="section-title mini-title left-aligned">
-              <h5>Allocation of Funds</h5>
-            </div>
-
-            <div
-              class="d-flex flex-column justify-content-between align-items-center my-5 mb-md-0"
-            >
-              <div class="flex-fill flex-shrink-1 w-50">
-                <canvas id="allo-chart"></canvas>
-              </div>
-              <div id="allo-legend" class="legend mt-4"></div>
-            </div>
-          </div>
-        </div>
-        <!-- // row -->
-        <div class="text-center">
-          <div class="btn btn-lg btn-primary mt-5">
-            Get NOVA Now
-            <img src="assets/images/right-arrow.svg" alt="arrow" />
-          </div>
-        </div>
-      </div>
-      <!-- // container -->
-    </section>
     <!-- // section -->
     <section id="roadmap" class="section">
       <div class="container">
