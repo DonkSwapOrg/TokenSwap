@@ -61,6 +61,18 @@ h5 {
   }
 }
 
+.connect {
+  position: absolute;
+  padding: inherit;
+  top: 3px;
+  right: 0;
+
+  button {
+    padding: 5px 10px;
+    font-size: 1rem;
+  }
+}
+
 .token {
   width: 100%;
   padding: 0 3rem;
@@ -183,7 +195,14 @@ h5 {
 }
 
 .navbar {
-  padding: 2rem 4rem;
+  @media (min-width: 768px) {
+    padding: 2rem 4rem;
+  }
+  &.presale {
+    @media (min-width: 992px) {
+      padding: 2rem 8rem;
+    }
+  }
 }
 
 .nav-link,
@@ -259,7 +278,7 @@ a {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center bottom;
-  margin-top: 6rem;
+  margin-top: 4rem;
   margin-bottom: 5rem;
 
   @media (min-width: 360px) and (max-width: 768px) {
