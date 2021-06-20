@@ -28,12 +28,15 @@ const App = () => {
     <>
       <Header />
       <div className="d-flex flex-column align-items-center justify-content-between">
-        <img
-          id="logo_slogan"
-          src="assets/images/logo.png"
-          style={{ height: 260 }}
-          alt=""
-        />
+        <a href="/">
+          <img
+            id="logo_slogan"
+            src="assets/images/logo.png"
+            style={{ height: 260 }}
+            alt=""
+          />
+        </a>
+
         <div style={{ width: "100%" }} className="hero">
           <p style={{ fontSize: 22 }} className="mx-auto">
             Welcome to ShibaNova Public Pre-sale!
