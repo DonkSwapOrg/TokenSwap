@@ -139,6 +139,17 @@ h5 {
   }
 }
 
+.presale-text-info {
+  font-weight: bold;
+  color: #00aaff;
+  font-size: 18px;
+  border: 1px solid #159dd28c;
+  border-radius: 25px;
+  padding: 10px 20px 5px;
+  margin: 2rem auto;
+  max-width: max-content;
+}
+
 .glowing-border {
   border: 2px solid #159bd2;
   -webkit-border-radius: 25px;
@@ -200,7 +211,7 @@ h5 {
   }
   &.presale {
     @media (min-width: 992px) {
-      padding: 2rem 8rem;
+      padding: 2rem 8rem 0;
     }
   }
 }
