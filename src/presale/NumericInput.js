@@ -25,7 +25,7 @@ const NumericInput = ({ label, token, balance, showMaxBtn }) => {
             }}
           >
             <div>{label}</div>
-            <div>Balance: {balance}</div>
+            {balance ? <div>Balance: {balance}</div> : null}
           </div>
         </div>
         <div
