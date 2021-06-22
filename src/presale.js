@@ -1,9 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Header from "./presale/header";
-import NumericInput from "./presale/NumericInput";
-import bnbLogo from "../assets/images/bnb.png";
-import novaLogo from "../assets/images/nova_token.png";
 import Exchange from "./presale/Exchange";
 
 //generate particles
