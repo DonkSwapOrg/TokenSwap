@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import NumericInput from "./NumericInput";
 
 const Exchange = () => {
-  const [bnbBalance, setBnbBalance] = useState(null);
-  const [novaBalance, setNovaBalance] = useState(null);
+  const [tokenABal, settokenABal] = useState(null);
+  const [tokenBBal, settokenBBal] = useState(null);
 
   return (
     <div style={{ maxWidth: "max-content", margin: "auto" }}>
@@ -12,8 +12,8 @@ const Exchange = () => {
       </p>
       <NumericInput
         label="From"
-        token={{ symbol: "BNB", logo: "assets/images/bnb.png" }}
-        balance={bnbBalance}
+        token={{ symbol: "BUSD", logo: "assets/images/busd.png" }}
+        balance={tokenABal}
         showMaxBtn
       />
       <svg
@@ -28,7 +28,7 @@ const Exchange = () => {
       <NumericInput
         label="To"
         token={{ symbol: "NOVA", logo: "assets/images/nova_token.png" }}
-        balance={novaBalance}
+        balance={tokenBBal}
       />
       <div
         style={{
