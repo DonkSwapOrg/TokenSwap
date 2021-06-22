@@ -6,8 +6,8 @@ $(function () {
     ---------------------------------------------------*/
 
   var config = {
-    endDate: "2021-06-25 23:59",
-    timeZone: "Etc/UTC",
+    endDate: "2021-06-25 22:00",
+    timeZone: "UTC",
     hours: $("#hours"),
     minutes: $("#minutes"),
     seconds: $("#seconds"),
