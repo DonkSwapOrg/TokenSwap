@@ -37,10 +37,11 @@ const Exchange = () => {
           margin: "5px auto",
           alignItems: "center",
           fontWeight: "bold",
+          fontSize: 12,
         }}
       >
-        <span style={{ color: "#159bd2", fontSize: 12 }}>Price:</span>
-        &nbsp; 1$ per NOVA
+        <span style={{ color: "#159bd2" }}>Price:</span>
+        &nbsp; 1 BUSD per NOVA
       </div>
       <button
         style={{ minWidth: 175, padding: 8, marginTop: 20 }}
