@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Header from "./presale/header";
 import Exchange from "./presale/Exchange";
+import * as bsc from "@binance-chain/bsc-use-wallet";
 
 //generate particles
 const generateParticles = () => {
@@ -22,7 +23,15 @@ const Particles = () => {
 
 const App = () => {
   return (
-    <>
+    <bsc.UseWalletProvider
+      chainId={"97"}
+      connectors={{
+        walletconnect: {
+          rpcUrl: "https://data-seed-prebsc-1-s1.binance.org:854",
+        },
+        bsc,
+      }}
+    >
       <Header />
       <div className="d-flex flex-column align-items-center justify-content-between">
         <a href="/">
@@ -48,7 +57,7 @@ const App = () => {
         </div>
       </div>
       <Particles />
-    </>
+    </bsc.UseWalletProvider>
   );
 };
 
