@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 const Header = () => (
   <nav className="navbar navbar-expand-lg navbar-dark presale">

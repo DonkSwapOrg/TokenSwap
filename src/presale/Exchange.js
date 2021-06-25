@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import NumericInput from "./NumericInput";
 
+import {purchase} from '../utils.js';
+
 const Exchange = () => {
   const [tokenABal, settokenABal] = useState(null);
   const [tokenBBal, settokenBBal] = useState(null);
