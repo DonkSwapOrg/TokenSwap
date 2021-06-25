@@ -72,14 +72,6 @@ const [web3, setWeb3] = useState(undefined)
 				console.log('Not correct', networkId, REACT_APP_NETWORK_ID)
 				setWrongNetwork(true)
 			}
-			const domain = window.location.href.split('?')[0]
-			if (domain.indexOf('/presale') === -1) {
-				setAsset('BUSD')
-			} else {
-				setAsset('BNB')
-			}
-			const bnbPrice = await getAssetPrice(web3)
-			setAssetPrice(bnbPrice)
 			setWeb3(web3)
 			setAccount(account)
 		}

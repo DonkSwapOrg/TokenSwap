@@ -52,4 +52,4 @@ const purchase = async (web3, value) => {
 	}
 }
 
-export {getAssetPrice, purchase}
+export {purchase}
