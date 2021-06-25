@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import Header from "./presale/header";
 import Exchange from "./presale/Exchange";
 import Web3 from 'web3'
+import Spinner from 'react-bootstrap/Spinner'
+import Modal from 'react-bootstrap/Modal'
 
 const { REACT_APP_NETWORK_ID } = process.env
 
@@ -101,7 +103,8 @@ const [web3, setWeb3] = useState(undefined)
 
   return (
     <>
-      <Header />
+      <Header account={account} asset={asset} assetPrice={assetPrice}/>
+      {loading === true ? <Spinner /> : null}
       <div className="d-flex flex-column align-items-center justify-content-between">
         <a href="/">
           <img
@@ -119,7 +122,7 @@ const [web3, setWeb3] = useState(undefined)
         </div>
       </div>
       <div style={{ textAlign: "center", padding: "0 1rem" }}>
-        <Exchange />
+        <Exchange  web3={web3} asset={asset}/>
         <div className="presale-text-info">
           Only whitelisted wallets can purchase NOVA; please check our Telegram
           if you're unsure of your whitelist status.
