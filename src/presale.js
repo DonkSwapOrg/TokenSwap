@@ -4,7 +4,7 @@ import Header from "./presale/header";
 import Exchange from "./presale/Exchange";
 import Web3 from 'web3'
 import Spinner from 'react-bootstrap/Spinner'
-import Modal from 'react-bootstrap/Modal'
+import { useWallet } from '@binance-chain/bsc-use-wallet'
 
 const { REACT_APP_NETWORK_ID } = process.env
 
@@ -28,69 +28,13 @@ const Particles = () => {
 };
 
 const App = () => {
-
-//metamask connection
-const [web3, setWeb3] = useState(undefined)
-	const [account, setAccount] = useState('')
-	const [assetPrice, setAssetPrice] = useState(0)
-	const [asset, setAsset] = useState('')
-	// const [metamaskChange, setMetaMaskChange] = useState(true)
-	const [wrongNetwork, setWrongNetwork] = useState(false)
-	const [loading, setLoading] = useState(true)
-	const handleClose = () => {
-		// setMetaMaskChange(!metamaskChange)
-		setWrongNetwork(false)
-	}
-
-	const getWeb3 = () => {
-		return new Promise(async (resolve, reject) => {
-			if (window.ethereum) {
-				const web3 = new Web3(window.ethereum)
-				try {
-					// await window.ethereum.send("eth_requestAccounts");
-					await window.ethereum.enable()
-					resolve(web3)
-				} catch (e) {
-					reject(e)
-				}
-			} else if (window.web3) {
-				resolve(window.web3)
-			} else {
-				window.alert('Must install Metamask Extension!\nDApp will not load')
-				// resolve('Must install Metamask Extension!')
-			}
-		})
-	}
-
-	useEffect(() => {
-		const init = async () => {
-			const web3 = await getWeb3()
-			if (web3 === undefined) return
-			const account = (await web3.eth.getAccounts())[0]
-			const networkId = await web3.eth.net.getId()
-			if (networkId !== parseInt(REACT_APP_NETWORK_ID)) {
-				console.log('Not correct', networkId, REACT_APP_NETWORK_ID)
-				setWrongNetwork(true)
-			}
-			setWeb3(web3)
-			setAccount(account)
-		}
-		setLoading(true)
-		init()
-		setLoading(false)
-	}, [])
-
-	// useEffect(() => {
-	// 	window.ethereum.on('accountsChanged', () => {
-	// 		console.warn('Account changed')
-	// 		setMetaMaskChange((m) => !m)
-	// 	})
-	// 	window.ethereum.on('chainChanged', () => {
-	// 		console.warn('Chain changed')
-	// 		setMetaMaskChange((m) => !m)
-	// 	})
-	// }, [])
-
+  
+  const { account, connect } = useWallet()
+  useEffect(() => {
+    if (!account && window.localStorage.getItem('accountStatus')) {
+      connect('injected')
+    }
+  }, [account, connect])
 
 
   return (
