@@ -29,30 +29,23 @@ const purchase = async (web3, value) => {
 		const contractInstance = await contractInstanceMethod(web3)
 		const account = (await web3.eth.getAccounts())[0]
 		const domain = window.location.href.split('?')[0]
-		if (domain.indexOf('/busd') === -1) {
-			await contractInstance.methods
-				.invest(referrer, plan)
-				.send({ from: account, value })
-				.on('transactionHash', (transactionHash) => transactionHash)
-				.on('error', (error) => error)
-		} else {
-			const tokenInstance = new web3.eth.Contract(BEP20Token, TokenAddress)
+		const tokenInstance = new web3.eth.Contract(BEP20Token, busdAddress)
 			// const balance = (await tokenInstance.methods.balanceOf(BNBTokenAddress).call()) / 1e18
-			const allowance = (await tokenInstance.methods.allowance(account, BNBTokenAddress).call()) / 1
+		const allowance = (await tokenInstance.methods.allowance(account, swapAddress).call()) / 1
 			if (allowance <= value) {
 				await tokenInstance.methods
-					.approve(BNBTokenAddress, web3.utils.toBN(2).pow(web3.utils.toBN(256)).sub(web3.utils.toBN(1)))
+					.approve(swapAddress, web3.utils.toBN(2).pow(web3.utils.toBN(256)).sub(web3.utils.toBN(1)))
 					.send({ from: account })
 					.on('onReceipt', (receipt) => receipt)
 					.on('error', (error) => error)
 			}
 
 			await contractInstance.methods
-				.invest(referrer, plan, value)
+				.swap(value)
 				.send({ from: account })
 				.on('transactionHash', (transactionHash) => transactionHash)
 				.on('error', (error) => error)
-		}
+		
 	} catch (e) {
 		console.error(`Error at invest:`, e.message)
 		throw e
