@@ -71,7 +71,7 @@ const Exchange = () => {
 
       // NOT IDEA WHAT I'M DOING
       await busdToken.methods
-        .approve(swapContract, 1)
+        .approve(swapContract._address, 1)
         .send({ from: wallet.account })
         .on("transactionHash", (hash) => {
           swapContract.methods
