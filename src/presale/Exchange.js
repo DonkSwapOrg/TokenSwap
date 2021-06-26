@@ -64,17 +64,17 @@ const Exchange = () => {
         process.env.REACT_APP_BUSDTOKEN
       );
 
-      const swap = new web3.eth.Contract(
+      const swapContract = new web3.eth.Contract(
         NovaSwapABI,
         process.env.REACT_APP_NOVASWAP
       );
 
       // NOT IDEA WHAT I'M DOING
       await busdToken.methods
-        .approve(process.env.REACT_APP_NOVASWAP, 1)
+        .approve(swapContract, 1)
         .send({ from: wallet.account })
         .on("transactionHash", (hash) => {
-          swap.methods
+          swapContract.methods
             .swap(1)
             .send({ from: wallet.account })
             .on("transactionHash", (hash) => {
