@@ -24,15 +24,7 @@ const Particles = () => {
 
 const App = () => {
   return (
-    <bsc.UseWalletProvider
-      chainId={56}
-      connectors={{
-        walletconnect: {
-          rpcUrl: "https://data-seed-prebsc-1-s1.binance.org:8545",
-        },
-        bsc,
-      }}
-    >
+    <bsc.UseWalletProvider chainId={97}>
       <Header />
       <div className="d-flex flex-column align-items-center justify-content-between">
         <a href="/">
