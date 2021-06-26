@@ -4,6 +4,7 @@ import NumericInput from "./NumericInput";
 import BUSDTokenABI from "../contracts/BUSDTokenABI";
 import NovaTokenABI from "../contracts/NovaTokenABI";
 import Web3 from "web3";
+import { getWeb3 } from "../utils";
 
 const Exchange = () => {
   const wallet = useWallet();
@@ -12,13 +13,7 @@ const Exchange = () => {
 
   useEffect(() => {
     const fetchBUSDBalance = async () => {
-      const httpProvider = new Web3.providers.HttpProvider(
-        process.env.REACT_APP_RPCURL,
-        {
-          timeout: 1000,
-        }
-      );
-      const web3 = new Web3(httpProvider);
+      const web3 = getWeb3();
       const token = new web3.eth.Contract(
         BUSDTokenABI,
         process.env.REACT_APP_BUSDTOKEN
@@ -38,13 +33,7 @@ const Exchange = () => {
 
   useEffect(() => {
     const fetchNovaBalance = async () => {
-      const httpProvider = new Web3.providers.HttpProvider(
-        process.env.REACT_APP_RPCURL,
-        {
-          timeout: 1000,
-        }
-      );
-      const web3 = new Web3(httpProvider);
+      const web3 = getWeb3();
       const token = new web3.eth.Contract(
         NovaTokenABI,
         process.env.REACT_APP_NOVATOKEN
