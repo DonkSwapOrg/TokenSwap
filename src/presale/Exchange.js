@@ -1,19 +1,39 @@
 import { useWallet } from "@binance-chain/bsc-use-wallet";
 import React, { useEffect, useState } from "react";
 import NumericInput from "./NumericInput";
+import BUSDTokenABI from "../contracts/BUSDTokenABI";
+import Web3 from "web3";
 
 const Exchange = () => {
-  const { account, balance, status } = useWallet();
+  const wallet = useWallet();
   const [tokenABal, settokenABal] = useState(null);
   const [tokenBBal, settokenBBal] = useState(null);
 
   useEffect(() => {
-    if (status === "connected" && balance !== "-1") {
-      settokenABal(balance);
+    const fetchBUSDBalance = async () => {
+      const httpProvider = new Web3.providers.HttpProvider(
+        "https://data-seed-prebsc-1-s1.binance.org:8545/",
+        {
+          timeout: 1000,
+        }
+      );
+      const web3 = new Web3(httpProvider);
+      const token = new web3.eth.Contract(
+        BUSDTokenABI,
+        process.env.REACT_APP_BUSDTOKEN
+      );
+
+      const tokenBalance = await token.methods.balanceOf(wallet.account).call();
+
+      settokenABal(tokenBalance);
+    };
+
+    if (wallet.status === "connected") {
+      fetchBUSDBalance();
     } else {
       settokenABal(null);
     }
-  }, [status, balance]);
+  }, [wallet.status, wallet.balance]);
 
   return (
     <div style={{ maxWidth: "max-content", margin: "auto" }}>
