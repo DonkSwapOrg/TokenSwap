@@ -12,7 +12,7 @@ const Exchange = () => {
       </p>
       <NumericInput
         label="From"
-        token={{ symbol: "BUSD", logo: "assets/images/busd.png" }}
+        token={{ symbol: "BUSD", logo: require("../../assets/images/busd.png") }}
         balance={tokenABal}
         showMaxBtn
       />
@@ -27,7 +27,7 @@ const Exchange = () => {
       </svg>
       <NumericInput
         label="To"
-        token={{ symbol: "NOVA", logo: "assets/images/nova_token.png" }}
+        token={{ symbol: "NOVA", logo: require("../../assets/images/nova_token.png") }}
         balance={tokenBBal}
       />
       <div

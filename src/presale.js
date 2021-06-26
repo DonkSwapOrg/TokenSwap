@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Header from "./presale/header";
+import Header from "./presale/Header";
 import Exchange from "./presale/Exchange";
 import * as bsc from "@binance-chain/bsc-use-wallet";
+const logo = require("../assets/images/logo.png");
 
 //generate particles
 const generateParticles = () => {
@@ -24,10 +25,10 @@ const Particles = () => {
 const App = () => {
   return (
     <bsc.UseWalletProvider
-      chainId={"97"}
+      chainId={56}
       connectors={{
         walletconnect: {
-          rpcUrl: "https://data-seed-prebsc-1-s1.binance.org:854",
+          rpcUrl: "https://data-seed-prebsc-1-s1.binance.org:8545",
         },
         bsc,
       }}
@@ -35,21 +36,16 @@ const App = () => {
       <Header />
       <div className="d-flex flex-column align-items-center justify-content-between">
         <a href="/">
-          <img
-            id="logo_slogan"
-            src="assets/images/logo.png"
-            style={{ height: 260 }}
-            alt=""
-          />
+          <img id="logo_slogan" src={logo} style={{ height: 260 }} alt="" />
         </a>
 
         <div style={{ width: "100%" }} className="hero">
-          <p style={{ fontSize: 22 }} className="mx-auto">
+          <p style={{ fontSize: 22, marginBottom: 0 }} className="mx-auto">
             Welcome to ShibaNova Public Pre-sale!
           </p>
         </div>
       </div>
-      <div style={{ textAlign: "center", padding: "0 1rem" }}>
+      <div style={{ textAlign: "center", padding: "1rem" }}>
         <Exchange />
         <div className="presale-text-info">
           Only whitelisted wallets can purchase NOVA; please check our Telegram
