@@ -117,9 +117,11 @@ const Header = () => {
         <button
           style={{}}
           className="btn btn-primary"
-          onClick={() => connect("injected")}
+          onClick={() =>
+            status === "connected" ? reset() : connect("injected")
+          }
         >
-          {status && status === "connected" ? account : "CONNECT WALLET"}
+          {status === "connected" ? account : "CONNECT WALLET"}
         </button>
       </div>
     </nav>
