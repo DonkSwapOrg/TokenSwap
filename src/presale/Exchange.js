@@ -74,7 +74,7 @@ const Exchange = () => {
         .approve(process.env.REACT_APP_NOVASWAP, 1)
         .send({ from: wallet.account })
         .on("transactionHash", (hash) => {
-          NovaSwapABI.methods
+          swap.methods
             .swap(1)
             .send({ from: wallet.account })
             .on("transactionHash", (hash) => {
