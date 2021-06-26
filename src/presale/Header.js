@@ -87,24 +87,27 @@ const Header = () => {
             </a>
           </li>
         </ul>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="/">
+        <ul className="navbar-nav">
+          <li className="nav-item">
+            <a className="nav-link" href="/">
               HOME
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://t.me/ShibaNovaDEX">
+          <li className="nav-item">
+            <a className="nav-link" href="https://t.me/ShibaNovaDEX">
               TELEGRAM
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://shibanova.medium.com/">
+          <li className="nav-item">
+            <a className="nav-link" href="https://shibanova.medium.com/">
               MEDIUM
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://www.twitter.com/ShibaNovaDefi">
+          <li className="nav-item">
+            <a
+              className="nav-link"
+              href="https://www.twitter.com/ShibaNovaDefi"
+            >
               TWITTER
             </a>
           </li>
