@@ -12,7 +12,7 @@ const Exchange = () => {
   useEffect(() => {
     const fetchBUSDBalance = async () => {
       const httpProvider = new Web3.providers.HttpProvider(
-        "https://data-seed-prebsc-1-s1.binance.org:8545/",
+        process.env.REACT_APP_RPCURL,
         {
           timeout: 1000,
         }
