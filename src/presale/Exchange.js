@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import NumericInput from "./NumericInput";
 import BUSDTokenABI from "../contracts/BUSDTokenABI";
 import NovaTokenABI from "../contracts/NovaTokenABI";
-import Web3 from "web3";
 import { getWeb3 } from "../utils";
 
 const Exchange = () => {
