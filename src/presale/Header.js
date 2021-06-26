@@ -2,7 +2,7 @@ import React from "react";
 import { useWallet } from "@binance-chain/bsc-use-wallet";
 
 const Header = () => {
-  const { account, connect, reset, status, error } = useWallet();
+  const { account, connect, reset, status } = useWallet();
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark presale">

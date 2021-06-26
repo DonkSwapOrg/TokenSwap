@@ -1,7 +1,9 @@
+import { useWallet } from "@binance-chain/bsc-use-wallet";
 import React, { useState } from "react";
 import NumericInput from "./NumericInput";
 
 const Exchange = () => {
+  const { account, status } = useWallet();
   const [tokenABal, settokenABal] = useState(null);
   const [tokenBBal, settokenBBal] = useState(null);
 
@@ -12,7 +14,10 @@ const Exchange = () => {
       </p>
       <NumericInput
         label="From"
-        token={{ symbol: "BUSD", logo: require("../../assets/images/busd.png") }}
+        token={{
+          symbol: "BUSD",
+          logo: require("../../assets/images/busd.png"),
+        }}
         balance={tokenABal}
         showMaxBtn
       />
@@ -27,7 +32,10 @@ const Exchange = () => {
       </svg>
       <NumericInput
         label="To"
-        token={{ symbol: "NOVA", logo: require("../../assets/images/nova_token.png") }}
+        token={{
+          symbol: "NOVA",
+          logo: require("../../assets/images/nova_token.png"),
+        }}
         balance={tokenBBal}
       />
       <div
