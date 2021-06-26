@@ -2,7 +2,7 @@ import React from "react";
 import { useWallet } from "@binance-chain/bsc-use-wallet";
 
 const Header = () => {
-  const { account, connect, reset, status } = useWallet();
+  const wallet = useWallet();
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark presale">
@@ -118,10 +118,12 @@ const Header = () => {
           style={{}}
           className="btn btn-primary"
           onClick={() =>
-            status === "connected" ? reset() : connect("injected")
+            wallet.status === "connected"
+              ? wallet.reset()
+              : wallet.connect("injected")
           }
         >
-          {status === "connected" ? account : "CONNECT WALLET"}
+          {wallet.status === "connected" ? wallet.account : "CONNECT WALLET"}
         </button>
       </div>
     </nav>
