@@ -11,51 +11,38 @@ const MAX_PURCHASE_BUSD = "400";
 
 const Exchange = () => {
   const wallet = useWallet();
-  const [tokenABal, setTokenABal] = useState(null);
-  const [tokenBBal, setTokenBBal] = useState(null);
+  const [balances, setBalances] = useState({ BUSD: null, NOVA: null });
 
   const [amountA, setAmountA] = useState("");
   const [amountB, setAmountB] = useState("");
 
   useEffect(() => {
-    const fetchBUSDBalance = async () => {
-      const web3 = getWeb3();
-      const token = new web3.eth.Contract(
-        BUSDTokenABI,
-        process.env.REACT_APP_BUSDTOKEN
-      );
-
-      const tokenBalance = await token.methods.balanceOf(wallet.account).call();
-
-      setTokenABal(web3.utils.fromWei(tokenBalance));
-    };
-
     if (wallet.status === "connected") {
-      fetchBUSDBalance();
+      fetchBalances();
     } else {
-      setTokenABal(null);
+      setBalances({ BUSD: null, NOVA: null });
     }
   }, [wallet.status, wallet.balance]);
 
-  useEffect(() => {
-    const fetchNovaBalance = async () => {
-      const web3 = getWeb3();
-      const token = new web3.eth.Contract(
-        NovaTokenABI,
-        process.env.REACT_APP_NOVATOKEN
-      );
+  const fetchBalances = async () => {
+    const web3 = getWeb3();
+    const BUSDContract = new web3.eth.Contract(
+      BUSDTokenABI,
+      process.env.REACT_APP_BUSDTOKEN
+    );
+    const NOVAContract = new web3.eth.Contract(
+      NovaTokenABI,
+      process.env.REACT_APP_NOVATOKEN
+    );
 
-      const tokenBalance = await token.methods.balanceOf(wallet.account).call();
+    const BUSDBal = await BUSDContract.methods.balanceOf(wallet.account).call();
+    const NOVABal = await NOVAContract.methods.balanceOf(wallet.account).call();
 
-      setTokenBBal(web3.utils.fromWei(tokenBalance));
-    };
-
-    if (wallet.status === "connected") {
-      fetchNovaBalance();
-    } else {
-      setTokenBBal(null);
-    }
-  }, [wallet.status, wallet.balance]);
+    setBalances({
+      BUSD: web3.utils.fromWei(BUSDBal),
+      NOVA: web3.utils.fromWei(NOVABal),
+    });
+  };
 
   const handleBuy = () => {
     if (wallet.status !== "connected") {
@@ -120,7 +107,7 @@ const Exchange = () => {
           symbol: "BUSD",
           logo: require("../../assets/images/busd.png"),
         }}
-        balance={tokenABal}
+        balance={balances.BUSD}
         showMaxBtn
         amount={amountA}
         onChange={handleChange}
@@ -140,7 +127,7 @@ const Exchange = () => {
           symbol: "NOVA",
           logo: require("../../assets/images/nova_token.png"),
         }}
-        balance={tokenBBal}
+        balance={balances.NOVA}
         amount={amountB}
         onChange={handleChange}
       />
