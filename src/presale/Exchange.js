@@ -7,12 +7,15 @@ import NovaSwapABI from "../contracts/NovaSwapABI";
 import { getWeb3 } from "../utils";
 import Web3 from "web3";
 
-const MAX_PURCHASE_BUSD = '400';
+const MAX_PURCHASE_BUSD = "400";
 
 const Exchange = () => {
   const wallet = useWallet();
   const [tokenABal, setTokenABal] = useState(null);
   const [tokenBBal, setTokenBBal] = useState(null);
+
+  const [amountA, setAmountA] = useState("");
+  const [amountB, setAmountB] = useState("");
 
   useEffect(() => {
     const fetchBUSDBalance = async () => {
@@ -73,13 +76,14 @@ const Exchange = () => {
         process.env.REACT_APP_NOVASWAP
       );
 
-      // TODO: Need to wire the input from the user into this. Also should do some validation.
-      const busdToSwapForNova = '1';
-
       // Just do nothing if the connected wallet is not whitelisted and log to the console so we can get users console output and troubleshoot.
-      const isWalletWhitelisted = await swapContract.methods.isWhitelisted(wallet.account).call()
+      const isWalletWhitelisted = await swapContract.methods
+        .isWhitelisted(wallet.account)
+        .call();
       if (!isWalletWhitelisted) {
-        console.log(`Selected account (${wallet.account}) is not whitelisted. `);
+        console.log(
+          `Selected account (${wallet.account}) is not whitelisted. `
+        );
         return;
       }
 
@@ -89,7 +93,7 @@ const Exchange = () => {
         .send({ from: wallet.account })
         .on("transactionHash", (hash) => {
           swapContract.methods
-            .swap(web3.utils.toWei(busdToSwapForNova))
+            .swap(web3.utils.toWei(amountA))
             .send({ from: wallet.account })
             .on("transactionHash", (hash) => {
               console.log(hash);
@@ -98,6 +102,11 @@ const Exchange = () => {
     };
 
     buy();
+  };
+
+  const handleChange = (evt) => {
+    setAmountA(evt.target.validity.valid ? evt.target.value : amountA);
+    setAmountB(evt.target.validity.valid ? evt.target.value : amountB);
   };
 
   return (
@@ -113,6 +122,8 @@ const Exchange = () => {
         }}
         balance={tokenABal}
         showMaxBtn
+        amount={amountA}
+        onChange={handleChange}
       />
       <svg
         viewBox="0 0 24 24"
@@ -130,6 +141,8 @@ const Exchange = () => {
           logo: require("../../assets/images/nova_token.png"),
         }}
         balance={tokenBBal}
+        amount={amountB}
+        onChange={handleChange}
       />
       <div
         style={{
