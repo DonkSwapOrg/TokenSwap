@@ -96,6 +96,12 @@ const Exchange = () => {
     setAmountB(evt.target.validity.valid ? evt.target.value : amountB);
   };
 
+  const handleMaxBtn = () => {
+    const maxBUSDPurchase = parseInt(MAX_PURCHASE_BUSD);
+    const walletBUSDBalance = balances.BUSD;
+    setAmountA(Math.min(maxBUSDPurchase, walletBUSDBalance));
+  };
+
   return (
     <div style={{ maxWidth: "max-content", margin: "auto" }}>
       <p style={{ marginBottom: 5, fontWeight: "bold" }}>
@@ -108,7 +114,8 @@ const Exchange = () => {
           logo: require("../../assets/images/busd.png"),
         }}
         balance={balances.BUSD}
-        showMaxBtn
+        showMaxBtn={wallet.status === "connected"}
+        handleMaxBtn={handleMaxBtn}
         amount={amountA}
         onChange={handleChange}
       />
