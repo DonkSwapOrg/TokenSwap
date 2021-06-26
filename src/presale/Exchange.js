@@ -7,8 +7,8 @@ import { getWeb3 } from "../utils";
 
 const Exchange = () => {
   const wallet = useWallet();
-  const [tokenABal, settokenABal] = useState(null);
-  const [tokenBBal, settokenBBal] = useState(null);
+  const [tokenABal, setTokenABal] = useState(null);
+  const [tokenBBal, setTokenBBal] = useState(null);
 
   useEffect(() => {
     const fetchBUSDBalance = async () => {
@@ -20,13 +20,13 @@ const Exchange = () => {
 
       const tokenBalance = await token.methods.balanceOf(wallet.account).call();
 
-      settokenABal(tokenBalance);
+      setTokenABal(tokenBalance);
     };
 
     if (wallet.status === "connected") {
       fetchBUSDBalance();
     } else {
-      settokenABal(null);
+      setTokenABal(null);
     }
   }, [wallet.status, wallet.balance]);
 
@@ -40,13 +40,13 @@ const Exchange = () => {
 
       const tokenBalance = await token.methods.balanceOf(wallet.account).call();
 
-      settokenBBal(tokenBalance);
+      setTokenBBal(tokenBalance);
     };
 
     if (wallet.status === "connected") {
       fetchNovaBalance();
     } else {
-      settokenBBal(null);
+      setTokenBBal(null);
     }
   }, [wallet.status, wallet.balance]);
 
