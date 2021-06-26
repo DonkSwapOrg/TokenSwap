@@ -7,6 +7,8 @@ import NovaSwapABI from "../contracts/NovaSwapABI";
 import { getWeb3 } from "../utils";
 import Web3 from "web3";
 
+const MAX_PURCHASE_BUSD = '400';
+
 const Exchange = () => {
   const wallet = useWallet();
   const [tokenABal, setTokenABal] = useState(null);
@@ -22,7 +24,7 @@ const Exchange = () => {
 
       const tokenBalance = await token.methods.balanceOf(wallet.account).call();
 
-      setTokenABal(tokenBalance);
+      setTokenABal(web3.utils.fromWei(tokenBalance));
     };
 
     if (wallet.status === "connected") {
@@ -71,12 +73,23 @@ const Exchange = () => {
         process.env.REACT_APP_NOVASWAP
       );
 
+      // TODO: Need to wire the input from the user into this. Also should do some validation.
+      const busdToSwapForNova = '1';
+
+      // Just do nothing if the connected wallet is not whitelisted and log to the console so we can get users console output and troubleshoot.
+      const isWalletWhitelisted = await swapContract.methods.isWhitelisted(wallet.account).call()
+      if (!isWalletWhitelisted) {
+        console.log(`Selected account (${wallet.account}) is not whitelisted. `);
+        return;
+      }
+
+      // TODO: We should really separate out the approval and purchase if we have time: shouldn't be too difficult.
       await busdToken.methods
-        .approve(swapContract._address, 1)
+        .approve(swapContract._address, web3.utils.toWei(MAX_PURCHASE_BUSD))
         .send({ from: wallet.account })
         .on("transactionHash", (hash) => {
           swapContract.methods
-            .swap(1)
+            .swap(web3.utils.toWei(busdToSwapForNova))
             .send({ from: wallet.account })
             .on("transactionHash", (hash) => {
               console.log(hash);
