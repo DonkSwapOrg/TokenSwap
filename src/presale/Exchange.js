@@ -2,6 +2,7 @@ import { useWallet } from "@binance-chain/bsc-use-wallet";
 import React, { useEffect, useState } from "react";
 import NumericInput from "./NumericInput";
 import BUSDTokenABI from "../contracts/BUSDTokenABI";
+import NovaTokenABI from "../contracts/NovaTokenABI";
 import Web3 from "web3";
 
 const Exchange = () => {
@@ -32,6 +33,32 @@ const Exchange = () => {
       fetchBUSDBalance();
     } else {
       settokenABal(null);
+    }
+  }, [wallet.status, wallet.balance]);
+
+  useEffect(() => {
+    const fetchNovaBalance = async () => {
+      const httpProvider = new Web3.providers.HttpProvider(
+        process.env.REACT_APP_RPCURL,
+        {
+          timeout: 1000,
+        }
+      );
+      const web3 = new Web3(httpProvider);
+      const token = new web3.eth.Contract(
+        NovaTokenABI,
+        process.env.REACT_APP_NOVATOKEN
+      );
+
+      const tokenBalance = await token.methods.balanceOf(wallet.account).call();
+
+      settokenBBal(tokenBalance);
+    };
+
+    if (wallet.status === "connected") {
+      fetchNovaBalance();
+    } else {
+      settokenBBal(null);
     }
   }, [wallet.status, wallet.balance]);
 
