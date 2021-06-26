@@ -58,7 +58,13 @@ const Exchange = () => {
 
     const buy = async () => {
       const web3 = getWeb3();
-      const token = new web3.eth.Contract(
+
+      const busdToken = new web3.eth.Contract(
+        BUSDTokenABI,
+        process.env.REACT_APP_BUSDTOKEN
+      );
+
+      const swap = new web3.eth.Contract(
         NovaSwapABI,
         process.env.REACT_APP_NOVASWAP
       );
