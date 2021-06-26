@@ -91,15 +91,15 @@ const Exchange = () => {
     buy();
   };
 
-  const handleChange = (evt) => {
-    setAmountA(evt.target.validity.valid ? evt.target.value : amountA);
-    setAmountB(evt.target.validity.valid ? evt.target.value : amountB);
+  const handleChange = (e) => {
+    setAmountA(e.target.validity.valid ? e.target.value : amountA);
+    setAmountB(e.target.validity.valid ? e.target.value : amountB);
   };
 
   return (
     <div style={{ maxWidth: "max-content", margin: "auto" }}>
       <p style={{ marginBottom: 5, fontWeight: "bold" }}>
-        Please enter the amount you wish to buy (400 NOVAs max)
+        Please enter the amount you wish to buy ({MAX_PURCHASE_BUSD} NOVAs max)
       </p>
       <NumericInput
         label="From"
@@ -109,6 +109,14 @@ const Exchange = () => {
         }}
         balance={balances.BUSD}
         showMaxBtn
+        onMaxBtnClick={(e) => {
+          const maxValue =
+            balances.BUSD > Number(MAX_PURCHASE_BUSD) - Number(balances.NOVA)
+              ? Number(MAX_PURCHASE_BUSD) - Number(balances.NOVA)
+              : balances.BUSD;
+          setAmountA(maxValue);
+          setAmountB(maxValue);
+        }}
         amount={amountA}
         onChange={handleChange}
       />

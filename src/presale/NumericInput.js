@@ -5,6 +5,7 @@ const NumericInput = ({
   token,
   balance,
   showMaxBtn,
+  onMaxBtnClick,
   onChange,
   amount,
 }) => (
@@ -72,6 +73,7 @@ const NumericInput = ({
               letterSpacing: "0.03em",
               cursor: "pointer",
             }}
+            onClick={onMaxBtnClick}
           >
             MAX
           </button>
