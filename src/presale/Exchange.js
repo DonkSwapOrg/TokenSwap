@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import NumericInput from "./NumericInput";
 import BUSDTokenABI from "../contracts/BUSDTokenABI";
 import NovaTokenABI from "../contracts/NovaTokenABI";
+import NovaSwapABI from "../contracts/NovaSwapABI";
 import { getWeb3 } from "../utils";
 
 const Exchange = () => {
@@ -49,6 +50,22 @@ const Exchange = () => {
       setTokenBBal(null);
     }
   }, [wallet.status, wallet.balance]);
+
+  const handleBuy = () => {
+    if (wallet.status !== "connected") {
+      return;
+    }
+
+    const buy = async () => {
+      const web3 = getWeb3();
+      const token = new web3.eth.Contract(
+        NovaSwapABI,
+        process.env.REACT_APP_NOVASWAP
+      );
+    };
+
+    buy();
+  };
 
   return (
     <div style={{ maxWidth: "max-content", margin: "auto" }}>
@@ -97,6 +114,7 @@ const Exchange = () => {
       <button
         style={{ minWidth: 175, padding: 8, marginTop: 20 }}
         className="btn btn-primary"
+        onClick={handleBuy}
       >
         BUY
       </button>
