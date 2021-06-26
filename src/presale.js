@@ -23,8 +23,10 @@ const Particles = () => {
 };
 
 const App = () => {
+  const chainId = parseInt(process.env.REACT_APP_NETWORKID);
+
   return (
-    <bsc.UseWalletProvider chainId={97}>
+    <bsc.UseWalletProvider chainId={chainId}>
       <Header />
       <div className="d-flex flex-column align-items-center justify-content-between">
         <a href="/">
