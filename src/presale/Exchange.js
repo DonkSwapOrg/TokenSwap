@@ -68,6 +68,19 @@ const Exchange = () => {
         NovaSwapABI,
         process.env.REACT_APP_NOVASWAP
       );
+
+      // NOT IDEA WHAT I'M DOING
+      await busdToken.methods
+        .approve(process.env.REACT_APP_NOVASWAP, 1)
+        .send({ from: wallet.account })
+        .on("transactionHash", (hash) => {
+          NovaSwapABI.methods
+            .swap(1)
+            .send({ from: wallet.account })
+            .on("transactionHash", (hash) => {
+              console.log(hash);
+            });
+        });
     };
 
     buy();
