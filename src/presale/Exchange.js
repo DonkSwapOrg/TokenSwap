@@ -5,6 +5,7 @@ import BUSDTokenABI from "../contracts/BUSDTokenABI";
 import NovaTokenABI from "../contracts/NovaTokenABI";
 import NovaSwapABI from "../contracts/NovaSwapABI";
 import { getWeb3 } from "../utils";
+import Web3 from "web3";
 
 const Exchange = () => {
   const wallet = useWallet();
@@ -41,7 +42,7 @@ const Exchange = () => {
 
       const tokenBalance = await token.methods.balanceOf(wallet.account).call();
 
-      setTokenBBal(tokenBalance);
+      setTokenBBal(web3.utils.fromWei(tokenBalance));
     };
 
     if (wallet.status === "connected") {
@@ -57,7 +58,8 @@ const Exchange = () => {
     }
 
     const buy = async () => {
-      const web3 = getWeb3();
+      // We have to make sure the Web3 instance we're using for creating read/write contract proxies uses a provider injected by our wallet.
+      const web3 = new Web3(Web3.givenProvider);
 
       const busdToken = new web3.eth.Contract(
         BUSDTokenABI,
@@ -69,7 +71,6 @@ const Exchange = () => {
         process.env.REACT_APP_NOVASWAP
       );
 
-      // NOT IDEA WHAT I'M DOING
       await busdToken.methods
         .approve(swapContract._address, 1)
         .send({ from: wallet.account })
