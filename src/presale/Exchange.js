@@ -1,11 +1,19 @@
 import { useWallet } from "@binance-chain/bsc-use-wallet";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NumericInput from "./NumericInput";
 
 const Exchange = () => {
-  const { account, status } = useWallet();
+  const { account, balance, status } = useWallet();
   const [tokenABal, settokenABal] = useState(null);
   const [tokenBBal, settokenBBal] = useState(null);
+
+  useEffect(() => {
+    if (status === "connected" && balance !== "-1") {
+      settokenABal(balance);
+    } else {
+      settokenABal(null);
+    }
+  }, [status, balance]);
 
   return (
     <div style={{ maxWidth: "max-content", margin: "auto" }}>
