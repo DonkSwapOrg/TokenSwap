@@ -57,10 +57,21 @@ const Exchange = () => {
       return;
     }
 
-    const buy = async () => {
-      // We have to make sure the Web3 instance we're using for creating read/write contract proxies uses a provider injected by our wallet.
-      const web3 = new Web3(Web3.givenProvider);
+    // We have to make sure the Web3 instance we're using for creating read/write contract proxies uses a provider injected by our wallet.
+    const web3 = new Web3(Web3.givenProvider);
+    
+    const amountToSpendInWei = web3.utils.toBN(amountA ? web3.utils.toWei(amountA) : '0')
+    const walletBalanaceInWei = web3.utils.toBN(web3.utils.toWei(balances.BUSD))
 
+    const amountToSpendGreaterThanWalletBalance = amountToSpendInWei.gt(walletBalanaceInWei)
+    const amountToSpendGreaterThanMaximumAllowed = amountToSpendInWei.gt(web3.utils.toBN(web3.utils.toWei(MAX_PURCHASE_BUSD)))
+
+    if (amountToSpendGreaterThanWalletBalance || amountToSpendInWei.isZero() || amountToSpendGreaterThanMaximumAllowed) {
+      console.log(`Preventing buy spending ${amountToSpendInWei.toString()} with wallet balance of ${walletBalanaceInWei.toString()}`)
+      return;
+    }
+
+    const buy = async () => {
       const busdToken = new web3.eth.Contract(
         BUSDTokenABI,
         process.env.REACT_APP_BUSDTOKEN
@@ -109,6 +120,7 @@ const Exchange = () => {
   };
 
   const handleMaxBtn = (e) => {
+    // TODO: This is floating point arithmetic so there are edge case rounding errors; but not really a big deal right now.
     const maxValue =
       balances.BUSD > Number(MAX_PURCHASE_BUSD) - Number(balances.NOVA)
         ? Number(MAX_PURCHASE_BUSD) - Number(balances.NOVA)
