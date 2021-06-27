@@ -109,6 +109,12 @@ const Exchange = () => {
     setAmountB(value);
   };
 
+  const handleMaxBtn = () => {
+    const maxBUSDPurchase = parseInt(MAX_PURCHASE_BUSD);
+    const walletBUSDBalance = balances.BUSD;
+    setAmountA(Math.min(maxBUSDPurchase, walletBUSDBalance));
+  };
+
   return (
     <div className="exchange">
       <p style={{ marginBottom: 5, fontWeight: "bold" }}>
