@@ -6,6 +6,7 @@ import NovaTokenABI from "../contracts/NovaTokenABI";
 import NovaSwapABI from "../contracts/NovaSwapABI";
 import { getWeb3 } from "../utils";
 import Web3 from "web3";
+import IERC20ABI from "../contracts/IERC20ABI";
 
 const MAX_PURCHASE_BUSD = "400";
 
@@ -73,7 +74,7 @@ const Exchange = () => {
 
     const buy = async () => {
       const busdToken = new web3.eth.Contract(
-        BUSDTokenABI,
+        IERC20ABI,
         process.env.REACT_APP_BUSDTOKEN
       );
 
@@ -93,17 +94,25 @@ const Exchange = () => {
         return;
       }
 
-      // TODO: We should really separate out the approval and purchase if we have time: shouldn't be too difficult.
-      await busdToken.methods
-        .approve(swapContract._address, web3.utils.toWei(MAX_PURCHASE_BUSD))
+      const allowance = await busdToken.methods
+        .allowance(wallet.account, swapContract._address)
+        .call();
+      const allowanceIsZero = web3.utils.toBN(allowance).isZero()
+      
+      if (allowanceIsZero) {
+        await busdToken.methods
+          .approve(swapContract._address, web3.utils.toWei(MAX_PURCHASE_BUSD))
+          .send({ from: wallet.account })
+          .on("transactionHash", (hash) => {
+            console.log(`Approval TX hash: ${hash}`)
+          });
+      }
+
+      await swapContract.methods
+        .swap(web3.utils.toWei(amountA))
         .send({ from: wallet.account })
         .on("transactionHash", (hash) => {
-          swapContract.methods
-            .swap(web3.utils.toWei(amountA))
-            .send({ from: wallet.account })
-            .on("transactionHash", (hash) => {
-              console.log(hash);
-            });
+          console.log(`Swap TX hash: ${hash}`);
         });
     };
 
