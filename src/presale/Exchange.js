@@ -60,7 +60,7 @@ const Exchange = () => {
 
     // We have to make sure the Web3 instance we're using for creating read/write contract proxies uses a provider injected by our wallet.
     const web3 = new Web3(Web3.givenProvider);
-    
+
     const amountToSpendInWei = web3.utils.toBN(amountA ? web3.utils.toWei(amountA) : '0')
     const walletBalanaceInWei = web3.utils.toBN(web3.utils.toWei(balances.BUSD))
 
@@ -98,7 +98,7 @@ const Exchange = () => {
         .allowance(wallet.account, swapContract._address)
         .call();
       const allowanceIsZero = web3.utils.toBN(allowance).isZero()
-      
+
       if (allowanceIsZero) {
         await busdToken.methods
           .approve(swapContract._address, web3.utils.toWei(MAX_PURCHASE_BUSD))
@@ -184,10 +184,10 @@ const Exchange = () => {
         {isDisconnected
           ? "Unlock Wallet"
           : Number(amountA) === 0
-          ? "Enter Amount"
-          : Number(amountA) > Number(balances.BUSD)
-          ? "Insufficient BUSD Balance"
-          : "Buy"}
+            ? "Enter Amount"
+            : Number(amountA) > Number(balances.BUSD)
+              ? "Insufficient BUSD Balance"
+              : "Buy"}
       </button>
     </div>
   );
