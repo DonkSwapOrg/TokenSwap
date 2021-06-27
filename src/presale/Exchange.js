@@ -109,10 +109,12 @@ const Exchange = () => {
     setAmountB(value);
   };
 
-  const handleMaxBtn = () => {
-    const maxBUSDPurchase = parseInt(MAX_PURCHASE_BUSD);
-    const walletBUSDBalance = balances.BUSD;
-    setAmountA(Math.min(maxBUSDPurchase, walletBUSDBalance));
+  const handleMaxBtn = (e) => {
+    const maxValue =
+      balances.BUSD > Number(MAX_PURCHASE_BUSD) - Number(balances.NOVA)
+        ? Number(MAX_PURCHASE_BUSD) - Number(balances.NOVA)
+        : balances.BUSD;
+    updateFields(maxValue);
   };
 
   return (
@@ -128,13 +130,7 @@ const Exchange = () => {
         }}
         balance={balances.BUSD}
         showMaxBtn
-        onMaxBtnClick={(e) => {
-          const maxValue =
-            balances.BUSD > Number(MAX_PURCHASE_BUSD) - Number(balances.NOVA)
-              ? Number(MAX_PURCHASE_BUSD) - Number(balances.NOVA)
-              : balances.BUSD;
-          updateFields(maxValue);
-        }}
+        onMaxBtnClick={handleMaxBtn}
         amount={amountA}
         onChange={handleChange}
       />
