@@ -3,6 +3,11 @@ import { useWallet } from "@binance-chain/bsc-use-wallet";
 
 const Header = () => {
   const wallet = useWallet();
+  const accountEllipsis = wallet.account
+    ? `${wallet.account.substring(0, 4)}...${wallet.account.substring(
+        wallet.account.length - 4
+      )}`
+    : null;
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark presale">
@@ -123,7 +128,7 @@ const Header = () => {
               : wallet.connect("injected")
           }
         >
-          {wallet.status === "connected" ? wallet.account : "CONNECT WALLET"}
+          {wallet.status === "connected" ? accountEllipsis : "Connect"}
         </button>
       </div>
     </nav>

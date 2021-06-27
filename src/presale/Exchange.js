@@ -12,17 +12,23 @@ const MAX_PURCHASE_BUSD = "400";
 const Exchange = () => {
   const wallet = useWallet();
   const [balances, setBalances] = useState({ BUSD: null, NOVA: null });
+  const [disabled, setDisabled] = useState(false);
 
   const [amountA, setAmountA] = useState("");
   const [amountB, setAmountB] = useState("");
 
   useEffect(() => {
+    console.log(wallet);
     if (wallet.status === "connected") {
       fetchBalances();
+      setDisabled(true);
     } else {
+      if (isDisconnected) setDisabled(false);
       setBalances({ BUSD: null, NOVA: null });
     }
   }, [wallet.status, wallet.balance]);
+
+  const isDisconnected = wallet.status === "disconnected";
 
   const fetchBalances = async () => {
     const web3 = getWeb3();
@@ -45,7 +51,10 @@ const Exchange = () => {
   };
 
   const handleBuy = () => {
+    if (disabled) return;
+
     if (wallet.status !== "connected") {
+      if (isDisconnected) wallet.connect("injected");
       return;
     }
 
@@ -92,8 +101,12 @@ const Exchange = () => {
   };
 
   const handleChange = (e) => {
-    setAmountA(e.target.validity.valid ? e.target.value : amountA);
-    setAmountB(e.target.validity.valid ? e.target.value : amountB);
+    updateFields(e.target.validity.valid ? e.target.value : amountA);
+  };
+
+  const updateFields = (value) => {
+    setAmountA(value);
+    setAmountB(value);
   };
 
   return (
@@ -114,8 +127,7 @@ const Exchange = () => {
             balances.BUSD > Number(MAX_PURCHASE_BUSD) - Number(balances.NOVA)
               ? Number(MAX_PURCHASE_BUSD) - Number(balances.NOVA)
               : balances.BUSD;
-          setAmountA(maxValue);
-          setAmountB(maxValue);
+          updateFields(maxValue);
         }}
         amount={amountA}
         onChange={handleChange}
@@ -153,11 +165,14 @@ const Exchange = () => {
         &nbsp; 1 BUSD per NOVA
       </div>
       <button
-        style={{ minWidth: 175, padding: 8, marginTop: 20 }}
-        className="btn btn-primary"
+        className={`btn btn-primary buy${disabled ? " disabled" : ""}`}
         onClick={handleBuy}
       >
-        BUY
+        {isDisconnected
+          ? "Unlock Wallet"
+          : amountA.length === 0
+          ? "Enter Amount"
+          : "Buy"}
       </button>
     </div>
   );

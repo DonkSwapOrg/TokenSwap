@@ -73,6 +73,20 @@ h5 {
   }
 }
 
+.buy {
+  min-width: 90%;
+  padding: 8px;
+  margin-top: 20px;
+
+  &.disabled {
+    background-image: none;
+    background-color: rgb(47, 47, 60);
+    color: #ffffff54;
+    box-shadow: none;
+    cursor: not-allowed !important;
+  }
+}
+
 .token {
   width: 100%;
   padding: 0 3rem;
