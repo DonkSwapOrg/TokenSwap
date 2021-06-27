@@ -28,7 +28,7 @@ const Exchange = () => {
     }
   }, [wallet.status, wallet.balance]);
 
-  const isDisconnected = wallet.status === "disconnected";
+  const isDisconnected = wallet.status !== "connected";
 
   const fetchBalances = async () => {
     const web3 = getWeb3();
@@ -54,7 +54,7 @@ const Exchange = () => {
     if (disabled) return;
 
     if (wallet.status !== "connected") {
-      if (isDisconnected) wallet.connect("injected");
+      wallet.connect("injected");
       return;
     }
 
@@ -163,6 +163,8 @@ const Exchange = () => {
           ? "Unlock Wallet"
           : Number(amountA) === 0
           ? "Enter Amount"
+          : Number(amountA) > Number(balances.BUSD)
+          ? "Insufficient BUSD Balance"
           : "Buy"}
       </button>
     </div>
