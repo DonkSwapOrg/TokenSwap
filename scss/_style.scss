@@ -73,6 +73,20 @@ h5 {
   }
 }
 
+.exchange {
+  max-width: max-content;
+  margin: auto;
+
+  .price {
+    display: flex;
+    width: 90%;
+    margin: 5px auto;
+    align-items: center;
+    font-weight: bold;
+    font-size: 12px;
+  }
+}
+
 .buy {
   min-width: 90%;
   padding: 8px;

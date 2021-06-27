@@ -110,7 +110,7 @@ const Exchange = () => {
   };
 
   return (
-    <div style={{ maxWidth: "max-content", margin: "auto" }}>
+    <div className="exchange">
       <p style={{ marginBottom: 5, fontWeight: "bold" }}>
         Please enter the amount you wish to buy ({MAX_PURCHASE_BUSD} NOVAs max)
       </p>
@@ -151,16 +151,7 @@ const Exchange = () => {
         amount={amountB}
         onChange={handleChange}
       />
-      <div
-        style={{
-          display: "flex",
-          width: "90%",
-          margin: "5px auto",
-          alignItems: "center",
-          fontWeight: "bold",
-          fontSize: 12,
-        }}
-      >
+      <div className="price">
         <span style={{ color: "#159bd2" }}>Price:</span>
         &nbsp; 1 BUSD per NOVA
       </div>
@@ -170,7 +161,7 @@ const Exchange = () => {
       >
         {isDisconnected
           ? "Unlock Wallet"
-          : amountA.length === 0
+          : Number(amountA) === 0
           ? "Enter Amount"
           : "Buy"}
       </button>
