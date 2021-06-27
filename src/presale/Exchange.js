@@ -53,7 +53,7 @@ const Exchange = () => {
   const handleBuy = () => {
     if (disabled) return;
 
-    if (wallet.status !== "connected") {
+    if (isDisconnected) {
       wallet.connect("injected");
       return;
     }
