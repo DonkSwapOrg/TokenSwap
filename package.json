@@ -9,7 +9,8 @@
   "scripts": {
     "clean": "rm dist/bundle.js",
     "start": "parcel presale.html",
-    "build": "parcel build *.html --public-url ."
+    "build": "parcel build *.html --public-url .",
+    "build_presale": "parcel build presale.html --public-url ."
   },
   "dependencies": {
     "@binance-chain/bsc-use-wallet": "^0.8.1",
