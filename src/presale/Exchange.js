@@ -21,7 +21,6 @@ const Exchange = () => {
     console.log(wallet);
     if (wallet.status === "connected") {
       fetchBalances();
-      setDisabled(true);
     } else {
       if (isDisconnected) setDisabled(false);
       setBalances({ BUSD: null, NOVA: null });
@@ -120,7 +119,7 @@ const Exchange = () => {
   return (
     <div className="exchange">
       <p style={{ marginBottom: 5, fontWeight: "bold" }}>
-        Please enter the amount you wish to buy ({MAX_PURCHASE_BUSD} NOVAs max)
+        NOTE: A single wallet can only purchase a maximum of {MAX_PURCHASE_BUSD} NOVA
       </p>
       <NumericInput
         label="From"

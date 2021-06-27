@@ -37,7 +37,7 @@ const App = () => {
 
         <div style={{ width: "100%" }} className="hero">
           <p style={{ fontSize: 22, marginBottom: 0 }} className="mx-auto">
-            Welcome to ShibaNova Public Pre-sale!
+            Welcome to the ShibaNova Whitelist Pre-Sale!
           </p>
         </div>
       </div>
