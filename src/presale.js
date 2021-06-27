@@ -54,4 +54,4 @@ const App = () => {
 };
 
 var mountNode = document.body;
-ReactDOM.render(<App name="Jane" />, mountNode);
+ReactDOM.render(<App />, mountNode);
