@@ -13,22 +13,24 @@ const MAX_PURCHASE_BUSD = "400";
 const Exchange = () => {
   const wallet = useWallet();
   const [balances, setBalances] = useState({ BUSD: null, NOVA: null });
-  const [disabled, setDisabled] = useState(false);
 
   const [amountA, setAmountA] = useState("");
   const [amountB, setAmountB] = useState("");
 
   useEffect(() => {
-    console.log(wallet);
     if (wallet.status === "connected") {
       fetchBalances();
     } else {
-      if (isDisconnected) setDisabled(false);
       setBalances({ BUSD: null, NOVA: null });
     }
   }, [wallet.status, wallet.balance]);
 
   const isDisconnected = wallet.status !== "connected";
+  const disableSwap =
+    !isDisconnected &&
+    (Number(amountA) === 0 ||
+      Number(amountA) > Number(balances.BUSD) ||
+      Number(amountA) > MAX_PURCHASE_BUSD);
 
   const fetchBalances = async () => {
     const web3 = getWeb3();
@@ -51,7 +53,7 @@ const Exchange = () => {
   };
 
   const handleBuy = () => {
-    if (disabled) return;
+    if (disableSwap) return;
 
     if (isDisconnected) {
       wallet.connect("injected");
@@ -194,7 +196,7 @@ const Exchange = () => {
         &nbsp; 1 BUSD per NOVA
       </div>
       <button
-        className={`btn btn-primary buy${disabled ? " disabled" : ""}`}
+        className={`btn btn-primary buy${disableSwap ? " disabled" : ""}`}
         onClick={handleBuy}
       >
         {isDisconnected
@@ -203,6 +205,8 @@ const Exchange = () => {
           ? "Enter Amount"
           : Number(amountA) > Number(balances.BUSD)
           ? "Insufficient BUSD Balance"
+          : Number(amountA) > MAX_PURCHASE_BUSD
+          ? `Max purchase ammount: ${MAX_PURCHASE_BUSD} NOVAs`
           : "Buy"}
       </button>
     </div>
