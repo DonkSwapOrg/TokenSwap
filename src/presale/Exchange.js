@@ -61,14 +61,28 @@ const Exchange = () => {
     // We have to make sure the Web3 instance we're using for creating read/write contract proxies uses a provider injected by our wallet.
     const web3 = new Web3(Web3.givenProvider);
 
-    const amountToSpendInWei = web3.utils.toBN(amountA ? web3.utils.toWei(amountA) : '0')
-    const walletBalanaceInWei = web3.utils.toBN(web3.utils.toWei(balances.BUSD))
+    const amountToSpendInWei = web3.utils.toBN(
+      amountA ? web3.utils.toWei(amountA) : "0"
+    );
+    const walletBalanaceInWei = web3.utils.toBN(
+      web3.utils.toWei(balances.BUSD)
+    );
 
-    const amountToSpendGreaterThanWalletBalance = amountToSpendInWei.gt(walletBalanaceInWei)
-    const amountToSpendGreaterThanMaximumAllowed = amountToSpendInWei.gt(web3.utils.toBN(web3.utils.toWei(MAX_PURCHASE_BUSD)))
+    const amountToSpendGreaterThanWalletBalance = amountToSpendInWei.gt(
+      walletBalanaceInWei
+    );
+    const amountToSpendGreaterThanMaximumAllowed = amountToSpendInWei.gt(
+      web3.utils.toBN(web3.utils.toWei(MAX_PURCHASE_BUSD))
+    );
 
-    if (amountToSpendGreaterThanWalletBalance || amountToSpendInWei.isZero() || amountToSpendGreaterThanMaximumAllowed) {
-      console.log(`Preventing buy spending ${amountToSpendInWei.toString()} with wallet balance of ${walletBalanaceInWei.toString()}`)
+    if (
+      amountToSpendGreaterThanWalletBalance ||
+      amountToSpendInWei.isZero() ||
+      amountToSpendGreaterThanMaximumAllowed
+    ) {
+      console.log(
+        `Preventing buy spending ${amountToSpendInWei.toString()} with wallet balance of ${walletBalanaceInWei.toString()}`
+      );
       return;
     }
 
@@ -97,14 +111,14 @@ const Exchange = () => {
       const allowance = await busdToken.methods
         .allowance(wallet.account, swapContract._address)
         .call();
-      const allowanceIsZero = web3.utils.toBN(allowance).isZero()
+      const allowanceIsZero = web3.utils.toBN(allowance).isZero();
 
       if (allowanceIsZero) {
         await busdToken.methods
           .approve(swapContract._address, web3.utils.toWei(MAX_PURCHASE_BUSD))
           .send({ from: wallet.account })
           .on("transactionHash", (hash) => {
-            console.log(`Approval TX hash: ${hash}`)
+            console.log(`Approval TX hash: ${hash}`);
           });
       }
 
@@ -131,7 +145,8 @@ const Exchange = () => {
   const handleMaxBtn = (e) => {
     // TODO: This is floating point arithmetic so there are edge case rounding errors; but not really a big deal right now.
     const maxValue =
-      balances.BUSD > Number(MAX_PURCHASE_BUSD) - Number(balances.NOVA)
+      balances.BUSD > Number(MAX_PURCHASE_BUSD) - Number(balances.NOVA) &&
+      Number(MAX_PURCHASE_BUSD) - Number(balances.NOVA) > 0
         ? Number(MAX_PURCHASE_BUSD) - Number(balances.NOVA)
         : balances.BUSD;
     updateFields(maxValue);
@@ -140,7 +155,8 @@ const Exchange = () => {
   return (
     <div className="exchange">
       <p style={{ marginBottom: 5, fontWeight: "bold" }}>
-        NOTE: A single wallet can only purchase a maximum of {MAX_PURCHASE_BUSD} NOVA
+        NOTE: A single wallet can only purchase a maximum of {MAX_PURCHASE_BUSD}{" "}
+        NOVA
       </p>
       <NumericInput
         label="From"
@@ -184,10 +200,10 @@ const Exchange = () => {
         {isDisconnected
           ? "Unlock Wallet"
           : Number(amountA) === 0
-            ? "Enter Amount"
-            : Number(amountA) > Number(balances.BUSD)
-              ? "Insufficient BUSD Balance"
-              : "Buy"}
+          ? "Enter Amount"
+          : Number(amountA) > Number(balances.BUSD)
+          ? "Insufficient BUSD Balance"
+          : "Buy"}
       </button>
     </div>
   );
