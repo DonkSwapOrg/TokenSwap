@@ -1,4 +1,5 @@
 import Web3 from "web3";
+import whitelistedAddresses from "./presale/whitelist.json";
 
 const httpProvider = new Web3.providers.HttpProvider(
   process.env.REACT_APP_RPCURL,
@@ -11,4 +12,6 @@ const getWeb3 = () => {
   return new Web3(httpProvider);
 };
 
-export { getWeb3 };
+const isWhitelisted = (addr) => whitelistedAddresses.some((a) => a === addr);
+
+export { getWeb3, isWhitelisted };

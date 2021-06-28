@@ -1,10 +1,11 @@
 import React from "react";
 import { useWallet } from "@binance-chain/bsc-use-wallet";
+import { isWhitelisted } from "../utils";
 
 const Header = () => {
   const wallet = useWallet();
   const accountEllipsis = wallet.account
-    ? `${wallet.account.substring(0, 4)}...${wallet.account.substring(
+    ? `${wallet.account.substring(0, 6)}...${wallet.account.substring(
         wallet.account.length - 4
       )}`
     : null;
@@ -120,7 +121,6 @@ const Header = () => {
       </div>
       <div className="connect">
         <button
-          style={{}}
           className="btn btn-primary"
           onClick={() =>
             wallet.status === "connected"
@@ -128,7 +128,11 @@ const Header = () => {
               : wallet.connect("injected")
           }
         >
-          {wallet.status === "connected" ? accountEllipsis : "Connect"}
+          {wallet.status === "connected"
+            ? isWhitelisted(wallet.account)
+              ? accountEllipsis
+              : "Not Whitelisted"
+            : "Connect"}
         </button>
       </div>
     </nav>

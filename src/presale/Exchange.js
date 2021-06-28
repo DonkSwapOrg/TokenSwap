@@ -4,7 +4,7 @@ import NumericInput from "./NumericInput";
 import BUSDTokenABI from "../contracts/BUSDTokenABI";
 import NovaTokenABI from "../contracts/NovaTokenABI";
 import NovaSwapABI from "../contracts/NovaSwapABI";
-import { getWeb3 } from "../utils";
+import { getWeb3, isWhitelisted } from "../utils";
 import Web3 from "web3";
 import IERC20ABI from "../contracts/IERC20ABI";
 
@@ -28,7 +28,8 @@ const Exchange = () => {
   const isDisconnected = wallet.status !== "connected";
   const disableSwap =
     !isDisconnected &&
-    (Number(amountA) === 0 ||
+    (!isWhitelisted(wallet.account) ||
+      Number(amountA) === 0 ||
       Number(amountA) > Number(balances.BUSD) ||
       Number(amountA) > MAX_PURCHASE_BUSD);
 
@@ -201,6 +202,8 @@ const Exchange = () => {
       >
         {isDisconnected
           ? "Unlock Wallet"
+          : !isWhitelisted(wallet.account)
+          ? "You're not whitelisted"
           : Number(amountA) === 0
           ? "Enter Amount"
           : Number(amountA) > Number(balances.BUSD)
