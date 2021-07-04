@@ -15,6 +15,7 @@ const BUSD_PER_NOVA = "2";
 const Exchange = () => {
   const wallet = useWallet();
   const [balances, setBalances] = useState({ BUSD: null, NOVA: null });
+  const [spent, setSpent] = useState("");
 
   const [amountA, setAmountA] = useState("");
   const [amountB, setAmountB] = useState("");
@@ -45,14 +46,25 @@ const Exchange = () => {
       NovaTokenABI,
       process.env.REACT_APP_NOVATOKEN
     );
+    const swapContract = new web3.eth.Contract(
+      NovaSwapABI,
+      process.env.REACT_APP_NOVASWAP
+    );
 
     const BUSDBal = await BUSDContract.methods.balanceOf(wallet.account).call();
     const NOVABal = await NOVAContract.methods.balanceOf(wallet.account).call();
+
+    const spentBusdInWei = await swapContract.methods
+      .spent(wallet.account)
+      .call();
+
+    const spentBusdForWallet = web3.utils.fromWei(spentBusdInWei);
 
     setBalances({
       BUSD: web3.utils.fromWei(BUSDBal),
       NOVA: web3.utils.fromWei(NOVABal),
     });
+    setSpent(spentBusdForWallet);
   };
 
   const handleBuy = () => {
@@ -148,22 +160,11 @@ const Exchange = () => {
   };
 
   const handleMaxBtn = async (e) => {
-    const web3 = getWeb3();
-    const swapContract = new web3.eth.Contract(
-      NovaSwapABI,
-      process.env.REACT_APP_NOVASWAP
-    );
-
-    const spentBusdInWei = await swapContract.methods
-      .spent(wallet.account)
-      .call();
-    const spentBusdForWallet = web3.utils.fromWei(spentBusdInWei);
-
     // TODO: This is floating point arithmetic so there are edge case rounding errors; but not really a big deal right now.
     const maxValue =
-      balances.BUSD > Number(MAX_PURCHASE_BUSD) - Number(spentBusdForWallet) &&
-      Number(MAX_PURCHASE_BUSD) - Number(spentBusdForWallet) > 0
-        ? Number(MAX_PURCHASE_BUSD) - Number(spentBusdForWallet)
+      balances.BUSD > Number(MAX_PURCHASE_BUSD) - Number(spent) &&
+      Number(MAX_PURCHASE_BUSD) - Number(spent) > 0
+        ? Number(MAX_PURCHASE_BUSD) - Number(spent)
         : balances.BUSD;
     updateFields(maxValue);
   };
