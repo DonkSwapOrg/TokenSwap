@@ -8,7 +8,9 @@ import { getWeb3, isWhitelisted } from "../utils";
 import Web3 from "web3";
 import IERC20ABI from "../contracts/IERC20ABI";
 
-const MAX_PURCHASE_BUSD = "250";
+const MAX_PURCHASE_BUSD = "500";
+const MAX_PURCHASE_NOVA = "250";
+const BUSD_PER_NOVA = "2";
 
 const Exchange = () => {
   const wallet = useWallet();
@@ -145,12 +147,21 @@ const Exchange = () => {
     setAmountB(value);
   };
 
-  const handleMaxBtn = (e) => {
+  const handleMaxBtn = async (e) => {
+    const web3 = getWeb3();
+    const swapContract = new web3.eth.Contract(
+      NovaSwapABI,
+      process.env.REACT_APP_NOVASWAP
+    );
+
+    const spentBusdInWei = await swapContract.methods.spent(wallet.account).call();
+    const spentBusdForWallet = web3.utils.fromWei(spentBusdInWei)
+
     // TODO: This is floating point arithmetic so there are edge case rounding errors; but not really a big deal right now.
     const maxValue =
-      balances.BUSD > Number(MAX_PURCHASE_BUSD) - Number(balances.NOVA) &&
-      Number(MAX_PURCHASE_BUSD) - Number(balances.NOVA) > 0
-        ? Number(MAX_PURCHASE_BUSD) - Number(balances.NOVA)
+      balances.BUSD > Number(MAX_PURCHASE_BUSD) - Number(spentBusdForWallet) &&
+      Number(MAX_PURCHASE_BUSD) - Number(spentBusdForWallet) > 0
+        ? Number(MAX_PURCHASE_BUSD) - Number(spentBusdForWallet)
         : balances.BUSD;
     updateFields(maxValue);
   };
@@ -158,7 +169,7 @@ const Exchange = () => {
   return (
     <div className="exchange">
       <p style={{ marginBottom: 5, fontWeight: "bold" }}>
-        NOTE: A single wallet can only purchase a maximum of {MAX_PURCHASE_BUSD}{" "}
+        NOTE: A single wallet can only purchase a maximum of {MAX_PURCHASE_NOVA}{" "}
         NOVA
       </p>
       <NumericInput
@@ -194,7 +205,7 @@ const Exchange = () => {
       />
       <div className="price">
         <span style={{ color: "#159bd2" }}>Price:</span>
-        &nbsp; 1 BUSD per NOVA
+        &nbsp; 2 BUSD per NOVA
       </div>
       <button
         className={`btn btn-primary buy${disableSwap ? " disabled" : ""}`}
@@ -209,7 +220,7 @@ const Exchange = () => {
           : Number(amountA) > Number(balances.BUSD)
           ? "Insufficient BUSD Balance"
           : Number(amountA) > MAX_PURCHASE_BUSD
-          ? `Max purchase ammount: ${MAX_PURCHASE_BUSD} NOVAs`
+          ? `Max purchase ammount: ${MAX_PURCHASE_NOVA} NOVAs`
           : "Buy"}
       </button>
     </div>
