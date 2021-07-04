@@ -144,7 +144,7 @@ const Exchange = () => {
 
   const updateFields = (value) => {
     setAmountA(value);
-    setAmountB(value);
+    setAmountB(value / 2);
   };
 
   const handleMaxBtn = async (e) => {
@@ -154,8 +154,10 @@ const Exchange = () => {
       process.env.REACT_APP_NOVASWAP
     );
 
-    const spentBusdInWei = await swapContract.methods.spent(wallet.account).call();
-    const spentBusdForWallet = web3.utils.fromWei(spentBusdInWei)
+    const spentBusdInWei = await swapContract.methods
+      .spent(wallet.account)
+      .call();
+    const spentBusdForWallet = web3.utils.fromWei(spentBusdInWei);
 
     // TODO: This is floating point arithmetic so there are edge case rounding errors; but not really a big deal right now.
     const maxValue =
@@ -201,7 +203,8 @@ const Exchange = () => {
         }}
         balance={balances.NOVA}
         amount={amountB}
-        onChange={handleChange}
+        disabled
+        //onChange={() => null}
       />
       <div className="price">
         <span style={{ color: "#159bd2" }}>Price:</span>

@@ -8,6 +8,7 @@ const NumericInput = ({
   onMaxBtnClick,
   onChange,
   amount,
+  disabled,
 }) => (
   <div
     style={{
@@ -62,6 +63,7 @@ const NumericInput = ({
             backgroundColor: "transparent",
             width: 0,
           }}
+          disabled={disabled}
         />
         {showMaxBtn ? (
           <button
