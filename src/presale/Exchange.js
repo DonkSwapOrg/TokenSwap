@@ -220,7 +220,7 @@ const Exchange = () => {
           : Number(amountA) > Number(balances.BUSD)
           ? "Insufficient BUSD Balance"
           : Number(amountA) > MAX_PURCHASE_BUSD
-          ? `Max purchase ammount: ${MAX_PURCHASE_NOVA} NOVAs`
+          ? `Max purchase amount: ${MAX_PURCHASE_NOVA} NOVAs`
           : "Buy"}
       </button>
     </div>
