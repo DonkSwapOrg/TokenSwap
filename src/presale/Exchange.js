@@ -8,7 +8,7 @@ import { getWeb3, isWhitelisted } from "../utils";
 import Web3 from "web3";
 import IERC20ABI from "../contracts/IERC20ABI";
 
-const MAX_PURCHASE_BUSD = "250";
+const MAX_PURCHASE_BUSD = "500";
 
 const Exchange = () => {
   const wallet = useWallet();
@@ -158,8 +158,8 @@ const Exchange = () => {
   return (
     <div className="exchange">
       <p style={{ marginBottom: 5, fontWeight: "bold" }}>
-        NOTE: A single wallet can only purchase a maximum of {MAX_PURCHASE_BUSD}{" "}
-        NOVA
+        NOTE: A single wallet can only spend a maximum of {MAX_PURCHASE_BUSD}{" "}
+        BUSD
       </p>
       <NumericInput
         label="From"
@@ -194,7 +194,7 @@ const Exchange = () => {
       />
       <div className="price">
         <span style={{ color: "#159bd2" }}>Price:</span>
-        &nbsp; 1 BUSD per NOVA
+        &nbsp; 2 BUSD per NOVA
       </div>
       <button
         className={`btn btn-primary buy${disableSwap ? " disabled" : ""}`}
@@ -209,7 +209,7 @@ const Exchange = () => {
           : Number(amountA) > Number(balances.BUSD)
           ? "Insufficient BUSD Balance"
           : Number(amountA) > MAX_PURCHASE_BUSD
-          ? `Max purchase ammount: ${MAX_PURCHASE_BUSD} NOVAs`
+          ? `Max spend ammount: ${MAX_PURCHASE_BUSD} BUSD`
           : "Buy"}
       </button>
     </div>
