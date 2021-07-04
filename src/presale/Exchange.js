@@ -16,6 +16,7 @@ const Exchange = () => {
   const wallet = useWallet();
   const [balances, setBalances] = useState({ BUSD: null, NOVA: null });
   const [spent, setSpent] = useState("");
+  const [buying, setBuying] = useState(false);
 
   const [amountA, setAmountA] = useState("");
   const [amountB, setAmountB] = useState("");
@@ -32,6 +33,7 @@ const Exchange = () => {
   const disableSwap =
     !isDisconnected &&
     (!isWhitelisted(wallet.account) ||
+      buying ||
       Number(amountA) === 0 ||
       Number(amountA) > Number(balances.BUSD) ||
       Number(amountA) > MAX_PURCHASE_BUSD);
@@ -145,8 +147,10 @@ const Exchange = () => {
         .on("transactionHash", (hash) => {
           console.log(`Swap TX hash: ${hash}`);
         });
-    };
 
+      setBuying(false);
+    };
+    setBuying(true);
     buy();
   };
 
