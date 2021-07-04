@@ -8,7 +8,7 @@ import { getWeb3, isWhitelisted } from "../utils";
 import Web3 from "web3";
 import IERC20ABI from "../contracts/IERC20ABI";
 
-const MAX_PURCHASE_BUSD = "400";
+const MAX_PURCHASE_BUSD = "250";
 
 const Exchange = () => {
   const wallet = useWallet();
