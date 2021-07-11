@@ -8,8 +8,8 @@ import { getWeb3, isWhitelisted } from "../utils";
 import Web3 from "web3";
 import IERC20ABI from "../contracts/IERC20ABI";
 
-const MAX_PURCHASE_BUSD = "500";
-const MAX_PURCHASE_NOVA = "250";
+const MAX_PURCHASE_BUSD = "400";
+const MAX_PURCHASE_NOVA = "200";
 const BUSD_PER_NOVA = "2";
 
 const Exchange = () => {
