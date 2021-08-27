@@ -6,7 +6,7 @@ $(function () {
     ---------------------------------------------------*/
 
   var config = {
-    endDate: "2021-07-04 22:00",
+    endDate: "2021-06-27 22:00",
     timeZone: "UTC",
     hours: $("#hours"),
     minutes: $("#minutes"),
@@ -179,11 +179,11 @@ var ctx = document.getElementById("dist-chart");
 var myChart = new Chart(ctx, {
   type: "pie",
   data: {
-    labels: ["Pre-Sale (90,000 NOVA)", "Initial Liquidity (10,000 NOVA)"],
+    labels: ["Pre-Sale (50,000 NOVA)", "Initial Liquidity (20,000 NOVA)"],
     datasets: [
       {
         label: "Token Distribution",
-        data: [90, 10],
+        data: [71.4, 28.6],
         backgroundColor: ["#159bd2", "#8cd0e5"],
         borderWidth: 0,
         hoverOffset: 4,
@@ -217,12 +217,12 @@ var ctx = document.getElementById("allo-chart");
 var myChart = new Chart(ctx, {
   type: "pie",
   data: {
-    labels: ["Audits ($60,000)", "Liquidity ($20,000)", "Marketing ($50,000)"],
+    labels: ["Audits ($30,000)", "Liquidity ($20,000)"],
     datasets: [
       {
         label: "Allocation of pre-sale funds",
-        data: [47, 15, 38],
-        backgroundColor: ["#9430b5", "#ba5ae2", "#ffb6c1"],
+        data: [60, 40],
+        backgroundColor: ["#9430b5", "#ba5ae2"],
         borderWidth: 0,
         hoverOffset: 4,
       },
