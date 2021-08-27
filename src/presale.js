@@ -21,7 +21,7 @@ const generateParticles = () => {
 };
 
 const Particles = () => {
-  return <div className="particles">{generateParticles()}</div>;
+  return <div className="particles"></div>;
 };
 
 const App = () => {
@@ -37,15 +37,14 @@ const App = () => {
 
         <div style={{ width: "100%" }} className="hero">
           <p style={{ fontSize: 22, marginBottom: 0 }} className="mx-auto">
-            Welcome to the ShibaNova Whitelist Pre-Sale!
+            Welcome to the DONK Finance new DonkSwap Token Exchange!
           </p>
         </div>
       </div>
       <div style={{ textAlign: "center", padding: "1rem" }}>
         <Exchange />
         <div className="presale-text-info">
-          Only whitelisted wallets can purchase NOVA; please check our Telegram
-          if you're unsure of your whitelist status.
+          Make sure to exchange all your old DONK for the NEW DST to enjoy the updated and improved benefits of DonkSwap.
         </div>
       </div>
       <Particles />

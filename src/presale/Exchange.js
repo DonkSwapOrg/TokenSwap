@@ -8,8 +8,8 @@ import { getWeb3, isWhitelisted } from "../utils";
 import Web3 from "web3";
 import IERC20ABI from "../contracts/IERC20ABI";
 
-const MAX_PURCHASE_BUSD = "200";
-const MAX_PURCHASE_NOVA = "100";
+const MAX_PURCHASE_BUSD = "1000000000000000";
+const MAX_PURCHASE_NOVA = "1000000000000000";
 const BUSD_PER_NOVA = "2";
 
 const Exchange = () => {
@@ -32,11 +32,11 @@ const Exchange = () => {
   const isDisconnected = wallet.status !== "connected";
   const disableSwap =
     !isDisconnected &&
-    (!isWhitelisted(wallet.account) ||
+    // (!isWhitelisted(wallet.account) ||
       buying ||
       Number(amountA) === 0 ||
-      Number(amountA) > Number(balances.BUSD) ||
-      Number(amountA) > MAX_PURCHASE_BUSD);
+      Number(amountA) > Number(balances.BUSD) 
+      // ||      Number(amountA) > MAX_PURCHASE_BUSD);
 
   const fetchBalances = async () => {
     const web3 = getWeb3();
@@ -96,8 +96,8 @@ const Exchange = () => {
 
     if (
       amountToSpendGreaterThanWalletBalance ||
-      amountToSpendInWei.isZero() ||
-      amountToSpendGreaterThanMaximumAllowed
+      amountToSpendInWei.isZero()
+       || amountToSpendGreaterThanMaximumAllowed
     ) {
       console.log(
         `Preventing buy spending ${amountToSpendInWei.toString()} with wallet balance of ${walletBalanaceInWei.toString()}`
@@ -116,16 +116,16 @@ const Exchange = () => {
         process.env.REACT_APP_NOVASWAP
       );
 
-      // Just do nothing if the connected wallet is not whitelisted and log to the console so we can get users console output and troubleshoot.
-      const isWalletWhitelisted = await swapContract.methods
-        .isWhitelisted(wallet.account)
-        .call();
-      if (!isWalletWhitelisted) {
-        console.log(
-          `Selected account (${wallet.account}) is not whitelisted. `
-        );
-        return;
-      }
+      // // Just do nothing if the connected wallet is not whitelisted and log to the console so we can get users console output and troubleshoot.
+      // const isWalletWhitelisted = await swapContract.methods
+      //   .isWhitelisted(wallet.account)
+      //   .call();
+      // if (!isWalletWhitelisted) {
+      //   console.log(
+      //     `Selected account (${wallet.account}) is not whitelisted. `
+      //   );
+      //   return;
+      // }
 
       const allowance = await busdToken.methods
         .allowance(wallet.account, swapContract._address)
@@ -176,14 +176,13 @@ const Exchange = () => {
   return (
     <div className="exchange">
       <p style={{ marginBottom: 5, fontWeight: "bold" }}>
-        NOTE: A single wallet can only purchase a maximum of {MAX_PURCHASE_NOVA}{" "}
-        NOVA
+        NOTE: You'll recieve an extra 5% of the new DST token to account for the burn on DONK transactions.
       </p>
       <NumericInput
         label="From"
         token={{
-          symbol: "BUSD",
-          logo: require("../../assets/images/busd.png"),
+          symbol: "DONK",
+          logo: require("../../assets/images/favicon.png"),
         }}
         balance={balances.BUSD}
         showMaxBtn
@@ -203,8 +202,8 @@ const Exchange = () => {
       <NumericInput
         label="To"
         token={{
-          symbol: "NOVA",
-          logo: require("../../assets/images/nova_token.png"),
+          symbol: "DST",
+          logo: require("../../assets/images/favicon.png"),
         }}
         balance={balances.NOVA}
         amount={amountB}
