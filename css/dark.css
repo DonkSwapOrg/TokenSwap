@@ -8885,7 +8885,9 @@ h5 {
 }
 
 .text-transparent {
+
   opacity: 0.7;
+
 }
 
 .btn {
@@ -9097,7 +9099,55 @@ a:hover {
   border-top-width: 1px;
   border-bottom-width: 1px;
 }
+/*---------------------------------------------------
+  Featured Partners
+---------------------------------------------------*/
+.feature-partner {
+  text-align: center;
+  margin: 1rem auto;
+}
 
+.feature-partner > p {
+  margin-top: 1rem;
+}
+
+.featured-partner-icon {
+  height: 75%;
+  width: 75%;
+  margin: 10px 0;
+  padding-bottom: 30px;
+}
+.featured-partner-icon-secondrow {
+  height: 70%;
+  width: 70%;
+  margin: 10px 0;
+  padding-top: 30px;
+  padding-bottom: 5px;
+}
+.featured-partner-icon-small {
+  height: 40%;
+  width: 40%;
+  margin: 10px 0;
+  padding-bottom: 5px;
+}
+.featured-partner-icon-very-small {
+  height: 20%;
+  width: 20%;
+  margin: 20px 0;
+  padding-bottom: 5px;
+}
+
+.featured-partner-title {
+  width: max-content;
+  margin: 0 auto;
+  padding: 5px 20px;
+  border-radius: 30px;
+  border: solid #20a4ea;
+  max-width: 100%;
+  border-left-width: 0px;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+}
 /*---------------------------------------------------
   Section
 ---------------------------------------------------*/

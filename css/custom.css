@@ -4,3 +4,33 @@
  * once added, do not forget to add the <link< tag in the html <head> as well.
  * <link rel="stylesheet" href="css/custom.css">
  */
+
+/*---------------------------------------------------
+  Featured
+---------------------------------------------------*/
+.feature-partner {
+  text-align: center;
+  margin: 1rem auto;
+}
+
+.feature-partner > p {
+  margin-top: 1rem;
+}
+
+.featured-partner-icon {
+  height: 85px;
+  margin: 50px 0;
+  padding-bottom: 500px;
+}
+
+.featured-partner-title {
+  width: max-content;
+  margin: 0 auto;
+  padding: 5px 20px;
+  border-radius: 30px;
+  border: solid #20a4ea;
+  max-width: 100%;
+  border-left-width: 0px;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+}
