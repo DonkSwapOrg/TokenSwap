@@ -5,24 +5,24 @@ import ReactDOM from "react-dom";
 import Header from "./presale/Header";
 import Exchange from "./presale/Exchange";
 import * as bsc from "@binance-chain/bsc-use-wallet";
-const logo = require("../assets/images/logo.png");
+const logo = require("../assets/images/og.png");
 
-//generate particles
-const generateParticles = () => {
-  const arr = [];
-  for (var i = 1; i <= 35; i++) {
-    arr.push(
-      <div key={i} className="circle-container">
-        <div className="circle"></div>
-      </div>
-    );
-  }
-  return arr;
-};
+// //generate particles
+// const generateParticles = () => {
+//   const arr = [];
+//   for (var i = 1; i <= 35; i++) {
+//     arr.push(
+//       <div key={i} className="circle-container">
+//         <div className="circle"></div>
+//       </div>
+//     );
+//   }
+//   return arr;
+// };
 
-const Particles = () => {
-  return <div className="particles"></div>;
-};
+// const Particles = () => {
+//   return <div className="particles"></div>;
+// };
 
 const App = () => {
   const chainId = parseInt(process.env.REACT_APP_NETWORKID);
@@ -44,10 +44,10 @@ const App = () => {
       <div style={{ textAlign: "center", padding: "1rem" }}>
         <Exchange />
         <div className="presale-text-info">
-          Make sure to exchange all your old DONK for the NEW DST to enjoy the updated and improved benefits of DonkSwap.
+          When you hit 'Buy' there will be three approvals in metamask. The first is to whitelist your wallet, then approve the allowance, and then the swap.
         </div>
       </div>
-      <Particles />
+      {/* <Particles /> */}
     </bsc.UseWalletProvider>
   );
 };

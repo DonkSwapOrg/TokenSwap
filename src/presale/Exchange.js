@@ -17,7 +17,7 @@ const Exchange = () => {
   const [balances, setBalances] = useState({ BUSD: null, NOVA: null });
   const [spent, setSpent] = useState("");
   const [buying, setBuying] = useState(false);
-
+  const [joining, setJoining] = useState(false);
   const [amountA, setAmountA] = useState("");
   const [amountB, setAmountB] = useState("");
 
@@ -53,7 +53,7 @@ const Exchange = () => {
       process.env.REACT_APP_NOVASWAP
     );
 
-    const BUSDBal = await BUSDContract.methods.balanceOf(wallet.account).call();
+    const BUSDBal = await BUSDContract.methods.balanceOf(wallet.account).call()*1000000000;
     const NOVABal = await NOVAContract.methods.balanceOf(wallet.account).call();
 
     const spentBusdInWei = await swapContract.methods
@@ -63,11 +63,40 @@ const Exchange = () => {
     const spentBusdForWallet = web3.utils.fromWei(spentBusdInWei);
 
     setBalances({
-      BUSD: web3.utils.fromWei(BUSDBal),
+      BUSD: web3.utils.fromWei(String(BUSDBal)),
       NOVA: web3.utils.fromWei(NOVABal),
+     
     });
     setSpent(spentBusdForWallet);
   };
+  
+  // const handleJoin = () => {
+  //   if (isDisconnected) {
+  //     wallet.connect("injected");
+  //     return;
+  //   }
+
+  //   const join = async () => {
+  //   const swapContract = new web3.eth.Contract(
+  //     NovaSwapABI,
+  //     process.env.REACT_APP_NOVASWAP
+  //   );
+
+  //   const isWalletWhitelisted = await swapContract.methods
+  //   .isWhitelisted(wallet.account)
+  //   .call();
+  
+  //   if (!isWalletWhitelisted) {
+  //    await swapContract.methods
+  //     .joinWhitelist(wallet.account)
+  //     .send({ from: wallet.account })
+  //     .on("transactionHash", (hash) => {
+  //         console.log(`Join Whitelist TX hash: ${hash}`);
+  //     });  
+  //   };
+  // };
+
+
 
   const handleBuy = () => {
     if (disableSwap) return;
@@ -86,7 +115,7 @@ const Exchange = () => {
     const walletBalanaceInWei = web3.utils.toBN(
       web3.utils.toWei(balances.BUSD)
     );
-
+   
     const amountToSpendGreaterThanWalletBalance = amountToSpendInWei.gt(
       walletBalanaceInWei
     );
@@ -116,33 +145,32 @@ const Exchange = () => {
         process.env.REACT_APP_NOVASWAP
       );
 
-      // // Just do nothing if the connected wallet is not whitelisted and log to the console so we can get users console output and troubleshoot.
-      // const isWalletWhitelisted = await swapContract.methods
-      //   .isWhitelisted(wallet.account)
-      //   .call();
-      // if (!isWalletWhitelisted) {
-      //   console.log(
-      //     `Selected account (${wallet.account}) is not whitelisted. `
-      //   );
-      //   return;
-      // }
-
-      const allowance = await busdToken.methods
-        .allowance(wallet.account, swapContract._address)
+      // Just do nothing if the connected wallet is not whitelisted and log to the console so we can get users console output and troubleshoot.
+      const isWalletWhitelisted = await swapContract.methods
+        .isWhitelisted(wallet.account)
         .call();
-      const allowanceIsZero = web3.utils.toBN(allowance).isZero();
+      
+        if (!isWalletWhitelisted) {
+         await swapContract.methods
+          .joinWhitelist(wallet.account)
+         .send({ from: wallet.account })
+         .on("transactionHash", (hash) => {
+          console.log(`Join Whitelist TX hash: ${hash}`);
+         });  
+        }
 
-      if (allowanceIsZero) {
+     
         await busdToken.methods
           .approve(swapContract._address, web3.utils.toWei(MAX_PURCHASE_BUSD))
           .send({ from: wallet.account })
           .on("transactionHash", (hash) => {
             console.log(`Approval TX hash: ${hash}`);
           });
-      }
+
+      
 
       await swapContract.methods
-        .swap(web3.utils.toWei(amountA))
+        .swap(amountA*1000000000)
         .send({ from: wallet.account })
         .on("transactionHash", (hash) => {
           console.log(`Swap TX hash: ${hash}`);
@@ -160,7 +188,7 @@ const Exchange = () => {
 
   const updateFields = (value) => {
     setAmountA(value);
-    setAmountB(value / 2);
+    setAmountB(value * 1.1 * .98);
   };
 
   const handleMaxBtn = async (e) => {
@@ -175,14 +203,21 @@ const Exchange = () => {
 
   return (
     <div className="exchange">
+       {/* <button
+       onClick={join}
+      >
+        {isDisconnected
+          ? "Unlock Wallet"
+           : "Join"}
+      </button> */}
       <p style={{ marginBottom: 5, fontWeight: "bold" }}>
-        NOTE: You'll recieve an extra 5% of the new DST token to account for the burn on DONK transactions.
+        NOTE: You'll recieve an extra 1% of the new DST token to account for the cost of swapping transactions.
       </p>
       <NumericInput
         label="From"
         token={{
           symbol: "DONK",
-          logo: require("../../assets/images/favicon.png"),
+          logo: "https://bscscan.com/token/images/donkeyking_32.png",
         }}
         balance={balances.BUSD}
         showMaxBtn
@@ -193,8 +228,8 @@ const Exchange = () => {
       <svg
         viewBox="0 0 24 24"
         width="24px"
-        style={{ fill: "#159bd2", margin: "5px 0" }}
-        color="primary"
+        style={{ fill: "#8615d2", margin: "5px 0" }}
+        color="secondary"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path d="M11 5V16.17L6.11997 11.29C5.72997 10.9 5.08997 10.9 4.69997 11.29C4.30997 11.68 4.30997 12.31 4.69997 12.7L11.29 19.29C11.68 19.68 12.31 19.68 12.7 19.29L19.29 12.7C19.68 12.31 19.68 11.68 19.29 11.29C18.9 10.9 18.27 10.9 17.88 11.29L13 16.17V5C13 4.45 12.55 4 12 4C11.45 4 11 4.45 11 5Z"></path>
@@ -203,31 +238,31 @@ const Exchange = () => {
         label="To"
         token={{
           symbol: "DST",
-          logo: require("../../assets/images/favicon.png"),
+          logo: "https://bscscan.com/token/images/donkeyking_32.png",
         }}
-        balance={balances.NOVA}
+        balance={balances.NOVA*1000000000}
         amount={amountB}
         disabled
         //onChange={() => null}
       />
-      <div className="price">
+      {/* <div className="price">
         <span style={{ color: "#159bd2" }}>Price:</span>
         &nbsp; 2 BUSD per NOVA
-      </div>
+      </div> */}
       <button
         className={`btn btn-primary buy${disableSwap ? " disabled" : ""}`}
         onClick={handleBuy}
       >
         {isDisconnected
           ? "Unlock Wallet"
-          : !isWhitelisted(wallet.account)
-          ? "You're not whitelisted"
+          // : !isWhitelisted(wallet.account)
+          // ? "You're not whitelisted"
           : Number(amountA) === 0
           ? "Enter Amount"
-          : Number(amountA) > Number(balances.BUSD)
-          ? "Insufficient BUSD Balance"
-          : Number(amountA) > MAX_PURCHASE_BUSD
-          ? `Max purchase amount: ${MAX_PURCHASE_NOVA} NOVAs`
+          : Number(amountA) > Number(balances.BUSD*1000000000)
+          ? "Insufficient DONK Balance"
+          // : Number(amountA) > MAX_PURCHASE_BUSD
+          // ? `Max purchase amount: ${MAX_PURCHASE_NOVA} NOVAs`
           : "Buy"}
       </button>
     </div>

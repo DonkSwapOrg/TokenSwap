@@ -178,11 +178,6 @@ const NovaSwapABI = [
           "internalType": "address",
           "name": "_purchaser",
           "type": "address"
-        },
-        {
-          "internalType": "uint8",
-          "name": "_zone",
-          "type": "uint8"
         }
       ],
       "name": "joinWhitelist",
