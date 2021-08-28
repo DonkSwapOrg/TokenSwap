@@ -194,10 +194,7 @@ const Exchange = () => {
   const handleMaxBtn = async (e) => {
     // TODO: This is floating point arithmetic so there are edge case rounding errors; but not really a big deal right now.
     const maxValue =
-      balances.BUSD > Number(MAX_PURCHASE_BUSD) - Number(spent) &&
-      Number(MAX_PURCHASE_BUSD) - Number(spent) > 0
-        ? Number(MAX_PURCHASE_BUSD) - Number(spent)
-        : balances.BUSD;
+      String(balances.BUSD*1000000000)
     updateFields(maxValue);
   };
 
