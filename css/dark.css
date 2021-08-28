@@ -8682,6 +8682,7 @@ h3 {
 body {
   font-family: "Montserrat", "Roboto", sans-serif;
   font-size: 1rem;
+  background-color: red;
 }
 
 h5 {
@@ -9565,6 +9566,7 @@ body {
   height: 100%;
   overflow: hidden;
   position: absolute;
+  background-image: linear-gradient(#af3ed1ad, #7b27c085 100%, rgba(201, 153, 255, 0.466) 56%);
 }
 
 .circle-container {

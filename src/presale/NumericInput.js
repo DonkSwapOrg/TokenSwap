@@ -70,7 +70,7 @@ const NumericInput = ({
             style={{
               border: "0px none",
               fontWeight: "bold",
-              color: "#8615d28c",
+              color: "#dbb1fc",
               backgroundColor: "transparent",
               letterSpacing: "0.03em",
               cursor: "pointer",

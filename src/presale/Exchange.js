@@ -188,7 +188,7 @@ const Exchange = () => {
 
   const updateFields = (value) => {
     setAmountA(value);
-    setAmountB(value * 1.1 * .98);
+    setAmountB(value * 1.009667);
   };
 
   const handleMaxBtn = async (e) => {
