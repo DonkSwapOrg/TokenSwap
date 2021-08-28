@@ -34,7 +34,7 @@ const Header = () => {
             <a
               className="nav-link-icon"
               target="_blank"
-              href="https://t.me/Shibverify"
+              href="https://t.me/donkeykingfinanceofficial"
             >
               <svg
                 width="30"
@@ -50,11 +50,11 @@ const Header = () => {
               </svg>
             </a>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <a
               className="nav-link-icon"
               target="_blank"
-              href="https://shibanova.medium.com/"
+              href="https://donk.finance"
             >
               <svg
                 width="30"
@@ -71,12 +71,12 @@ const Header = () => {
                 />
               </svg>
             </a>
-          </li>
+          </li> */}
           <li className="nav-item">
             <a
               className="nav-link-icon"
               target="_blank"
-              href="https://www.twitter.com/ShibaNovaDefi"
+              href="http://twitter.com/donkfinance"
             >
               <svg
                 width="30"
@@ -129,10 +129,11 @@ const Header = () => {
           }
         >
           {wallet.status === "connected"
-            ? isWhitelisted(wallet.account)
+            // ? isWhitelisted(wallet.account)
               ? accountEllipsis
-              : "Not Whitelisted"
+            //   : "Not Whitelisted"
             : "Connect"}
+        
         </button>
       </div>
     </nav>

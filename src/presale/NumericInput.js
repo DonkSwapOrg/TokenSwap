@@ -16,7 +16,7 @@ const NumericInput = ({
       maxWidth: 450,
     }}
   >
-    <div style={{ borderRadius: 16, border: "2px solid #159dd28c" }}>
+    <div style={{ borderRadius: 16, border: "2px solid #8615d28c" }}>
       <div
         style={{
           fontSize: 14,
@@ -70,7 +70,7 @@ const NumericInput = ({
             style={{
               border: "0px none",
               fontWeight: "bold",
-              color: "rgb(31, 199, 212)",
+              color: "#8615d28c",
               backgroundColor: "transparent",
               letterSpacing: "0.03em",
               cursor: "pointer",
