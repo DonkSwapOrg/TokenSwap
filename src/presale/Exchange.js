@@ -34,8 +34,8 @@ const Exchange = () => {
     !isDisconnected &&
     // (!isWhitelisted(wallet.account) ||
       buying ||
-      Number(amountA) === 0 ||
-      Number(amountA) > Number(balances.BUSD) 
+      Number(amountA) === 0
+      // ||  Number(amountA) > Number(balances.BUSD)
       // ||      Number(amountA) > MAX_PURCHASE_BUSD);
 
   const fetchBalances = async () => {
@@ -53,7 +53,7 @@ const Exchange = () => {
       process.env.REACT_APP_NOVASWAP
     );
 
-    const BUSDBal = await BUSDContract.methods.balanceOf(wallet.account).call()*1000000000;
+    const BUSDBal = await BUSDContract.methods.balanceOf(wallet.account).call();
     const NOVABal = await NOVAContract.methods.balanceOf(wallet.account).call();
 
     const spentBusdInWei = await swapContract.methods
@@ -63,13 +63,13 @@ const Exchange = () => {
     const spentBusdForWallet = web3.utils.fromWei(spentBusdInWei);
 
     setBalances({
-      BUSD: web3.utils.fromWei(String(BUSDBal)),
+      BUSD: web3.utils.fromWei(BUSDBal),
       NOVA: web3.utils.fromWei(NOVABal),
-     
+
     });
     setSpent(spentBusdForWallet);
   };
-  
+
   // const handleJoin = () => {
   //   if (isDisconnected) {
   //     wallet.connect("injected");
@@ -85,14 +85,14 @@ const Exchange = () => {
   //   const isWalletWhitelisted = await swapContract.methods
   //   .isWhitelisted(wallet.account)
   //   .call();
-  
+
   //   if (!isWalletWhitelisted) {
   //    await swapContract.methods
   //     .joinWhitelist(wallet.account)
   //     .send({ from: wallet.account })
   //     .on("transactionHash", (hash) => {
   //         console.log(`Join Whitelist TX hash: ${hash}`);
-  //     });  
+  //     });
   //   };
   // };
 
@@ -115,7 +115,7 @@ const Exchange = () => {
     const walletBalanaceInWei = web3.utils.toBN(
       web3.utils.toWei(balances.BUSD)
     );
-   
+
     const amountToSpendGreaterThanWalletBalance = amountToSpendInWei.gt(
       walletBalanaceInWei
     );
@@ -123,16 +123,16 @@ const Exchange = () => {
       web3.utils.toBN(web3.utils.toWei(MAX_PURCHASE_BUSD))
     );
 
-    if (
-      amountToSpendGreaterThanWalletBalance ||
-      amountToSpendInWei.isZero()
-       || amountToSpendGreaterThanMaximumAllowed
-    ) {
-      console.log(
-        `Preventing buy spending ${amountToSpendInWei.toString()} with wallet balance of ${walletBalanaceInWei.toString()}`
-      );
-      return;
-    }
+    // if (
+    //   amountToSpendGreaterThanWalletBalance ||
+    //   amountToSpendInWei.isZero()
+    //    || amountToSpendGreaterThanMaximumAllowed
+    // ) {
+    //   console.log(
+    //     `Preventing buy spending ${amountToSpendInWei.toString()} with wallet balance of ${walletBalanaceInWei.toString()}`
+    //   );
+    //   return;
+    // }
 
     const buy = async () => {
       const busdToken = new web3.eth.Contract(
@@ -149,17 +149,17 @@ const Exchange = () => {
       const isWalletWhitelisted = await swapContract.methods
         .isWhitelisted(wallet.account)
         .call();
-      
+
         if (!isWalletWhitelisted) {
          await swapContract.methods
           .joinWhitelist(wallet.account)
          .send({ from: wallet.account })
          .on("transactionHash", (hash) => {
           console.log(`Join Whitelist TX hash: ${hash}`);
-         });  
+         });
         }
 
-     
+
         await busdToken.methods
           .approve(swapContract._address, web3.utils.toWei(MAX_PURCHASE_BUSD))
           .send({ from: wallet.account })
@@ -167,7 +167,7 @@ const Exchange = () => {
             console.log(`Approval TX hash: ${hash}`);
           });
 
-      
+
 
       await swapContract.methods
         .swap(amountA*1000000000)
@@ -219,7 +219,7 @@ const Exchange = () => {
           symbol: "DONK",
           logo: "https://bscscan.com/token/images/donkeyking_32.png",
         }}
-        balance={balances.BUSD}
+        balance={balances.BUSD*1000000000}
         showMaxBtn
         onMaxBtnClick={handleMaxBtn}
         amount={amountA}
@@ -259,8 +259,8 @@ const Exchange = () => {
           // ? "You're not whitelisted"
           : Number(amountA) === 0
           ? "Enter Amount"
-          : Number(amountA) > Number(balances.BUSD*1000000000)
-          ? "Insufficient DONK Balance"
+          // : Number(amountA) > Number(balances.BUSD*1000000000000000000)
+          // ? "Insufficient DONK Balance"
           // : Number(amountA) > MAX_PURCHASE_BUSD
           // ? `Max purchase amount: ${MAX_PURCHASE_NOVA} NOVAs`
           : "Buy"}
