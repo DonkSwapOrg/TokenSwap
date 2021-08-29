@@ -8,7 +8,7 @@ import { getWeb3, isWhitelisted } from "../utils";
 import Web3 from "web3";
 import IERC20ABI from "../contracts/IERC20ABI";
 
-const MAX_PURCHASE_BUSD = "1000000000000000";
+const MAX_PURCHASE_BUSD = "10000000000000000000000000000000000";
 const MAX_PURCHASE_NOVA = "1000000000000000";
 const BUSD_PER_NOVA = "2";
 
@@ -159,6 +159,12 @@ const Exchange = () => {
          });
         }
 
+        const allowance = await busdToken.methods
+        .allowance(wallet.account, swapContract._address)
+        .call();
+      const allowanceIsZero = web3.utils.toBN(allowance).isZero();
+
+      if (allowanceIsZero) {
 
         await busdToken.methods
           .approve(swapContract._address, web3.utils.toWei(MAX_PURCHASE_BUSD))
@@ -166,7 +172,7 @@ const Exchange = () => {
           .on("transactionHash", (hash) => {
             console.log(`Approval TX hash: ${hash}`);
           });
-
+        }
 
 
       await swapContract.methods
