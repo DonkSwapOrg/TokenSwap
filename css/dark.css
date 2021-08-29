@@ -9566,7 +9566,7 @@ body {
   height: 100%;
   overflow: hidden;
   position: absolute;
-  background-image: linear-gradient(#af3ed1ad, #7b27c085 100%, rgba(201, 153, 255, 0.466) 56%);
+  background-image: linear-gradient(#af3ed1ad, #7b27c085 100%, rgba(76, 0, 255, 0.979) 56%);
 }
 
 .circle-container {

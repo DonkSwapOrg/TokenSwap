@@ -217,7 +217,7 @@ const Exchange = () => {
           logo: "https://bscscan.com/token/images/donkeyking_32.png",
         }}
         balance={balances.BUSD*1000000000}
-        showMaxBtn
+        // showMaxBtn
         onMaxBtnClick={handleMaxBtn}
         amount={amountA}
         onChange={handleChange}
