@@ -8,7 +8,7 @@ import { getWeb3, isWhitelisted } from "../utils";
 import Web3 from "web3";
 import IERC20ABI from "../contracts/IERC20ABI";
 
-const MAX_PURCHASE_BUSD = "10000000000000000000000000";
+const MAX_PURCHASE_BUSD = "10000000000000000000000000000000";
 const MAX_PURCHASE_NOVA = "1000000000000000";
 const BUSD_PER_NOVA = "2";
 
@@ -175,9 +175,9 @@ const Exchange = () => {
           });
         }
 
-        console.log(amountA)
+        // console.log(web3.utils.toBN(amountA*1000000000).toString()) 
       await swapContract.methods
-        .swap(web3.utils.toWei(amountA)/1000000000)
+        .swap(web3.utils.toBN(amountA*1000000000).toString()) 
         .send({ from: wallet.account })
         .on("transactionHash", (hash) => {
           console.log(`Swap TX hash: ${hash}`);
