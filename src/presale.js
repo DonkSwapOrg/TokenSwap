@@ -48,7 +48,7 @@ const App = () => {
       <div style={{ textAlign: "center", padding: "1rem" }}>
         <Exchange />
         <div className="presale-text-info">
-          When you hit 'Buy' there will be three approvals in metamask. The first is to whitelist your wallet, then approve the allowance, and then the swap.
+          When you hit 'Swap' there will be three approvals in metamask. The first is to whitelist your wallet, then approve the allowance, and then the swap.
         </div>
       </div>
       

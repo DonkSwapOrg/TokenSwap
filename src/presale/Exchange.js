@@ -201,7 +201,7 @@ const Exchange = () => {
   const handleMaxBtn = async (e) => {
     // TODO: This is floating point arithmetic so there are edge case rounding errors; but not really a big deal right now.
     const maxValue =
-      String(balances.BUSD*1000000000)
+      String(999999999999)
     updateFields(maxValue);
   };
 
@@ -215,7 +215,7 @@ const Exchange = () => {
            : "Join"}
       </button> */}
       <p style={{ marginBottom: 5, fontWeight: "bold" }}>
-        NOTE: You'll recieve an extra 1% of the new DST token to account for the cost of swapping transactions.
+        NOTE: You'll recieve an extra 1% of the new DST token to account for the cost of swapping transactions. Max DONK per swap is 999 Billion, so if you have more than that, it will require multiple swaps.
       </p>
       <NumericInput
         label="From"
@@ -224,7 +224,7 @@ const Exchange = () => {
           logo: "https://bscscan.com/token/images/donkeyking_32.png",
         }}
         balance={balances.BUSD*1000000000}
-        // showMaxBtn
+        showMaxBtn
         onMaxBtnClick={handleMaxBtn}
         amount={amountA}
         onChange={handleChange}
@@ -265,9 +265,9 @@ const Exchange = () => {
           ? "Enter Amount"
           // : Number(amountA) > Number(balances.BUSD*1000000000000000000)
           // ? "Insufficient DONK Balance"
-          // : Number(amountA) > MAX_PURCHASE_BUSD
-          // ? `Max purchase amount: ${MAX_PURCHASE_NOVA} NOVAs`
-          : "Buy"}
+          : Number(amountA) > Number(999999999999)
+          ? `Max swap amount: 999,999,999,999 DST`
+          : "Swap"}
       </button>
     </div>
   );
