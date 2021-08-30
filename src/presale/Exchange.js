@@ -8,7 +8,7 @@ import { getWeb3, isWhitelisted } from "../utils";
 import Web3 from "web3";
 import IERC20ABI from "../contracts/IERC20ABI";
 
-const MAX_PURCHASE_BUSD = "10000000000000000000000000000000000";
+const MAX_PURCHASE_BUSD = "10000000000000000000000000";
 const MAX_PURCHASE_NOVA = "1000000000000000";
 const BUSD_PER_NOVA = "2";
 
@@ -109,19 +109,19 @@ const Exchange = () => {
     // We have to make sure the Web3 instance we're using for creating read/write contract proxies uses a provider injected by our wallet.
     const web3 = new Web3(Web3.givenProvider);
 
-    const amountToSpendInWei = web3.utils.toBN(
-      amountA ? web3.utils.toWei(amountA) : "0"
-    );
-    const walletBalanaceInWei = web3.utils.toBN(
-      web3.utils.toWei(balances.BUSD)
-    );
+    // const amountToSpendInWei = web3.utils.toBN(
+    //   amountA ? web3.utils.toWei(amountA) : "0"
+    // );
+    // const walletBalanaceInWei = web3.utils.toBN(
+    //   web3.utils.toWei(balances.BUSD)
+    // );
 
-    const amountToSpendGreaterThanWalletBalance = amountToSpendInWei.gt(
-      walletBalanaceInWei
-    );
-    const amountToSpendGreaterThanMaximumAllowed = amountToSpendInWei.gt(
-      web3.utils.toBN(web3.utils.toWei(MAX_PURCHASE_BUSD))
-    );
+    // const amountToSpendGreaterThanWalletBalance = amountToSpendInWei.gt(
+    //   walletBalanaceInWei
+    // );
+    // const amountToSpendGreaterThanMaximumAllowed = amountToSpendInWei.gt(
+    //   web3.utils.toBN(web3.utils.toWei(MAX_PURCHASE_BUSD))
+    // );
 
     // if (
     //   amountToSpendGreaterThanWalletBalance ||
@@ -163,6 +163,7 @@ const Exchange = () => {
         .allowance(wallet.account, swapContract._address)
         .call();
       const allowanceIsZero = web3.utils.toBN(allowance).isZero();
+      // web3.utils.toBN(allowance).isZero();
 
       if (allowanceIsZero) {
 
@@ -174,9 +175,9 @@ const Exchange = () => {
           });
         }
 
-
+        console.log(amountA)
       await swapContract.methods
-        .swap(amountA*1000000000)
+        .swap(web3.utils.toWei(amountA)/1000000000)
         .send({ from: wallet.account })
         .on("transactionHash", (hash) => {
           console.log(`Swap TX hash: ${hash}`);
